@@ -1,0 +1,16 @@
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Debug\RouteLists.csproj.AssemblyReference.cache
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Debug\RouteLists.csproj.SuggestedBindingRedirects.cache
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Debug\App.g.cs
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Debug\RouteLists_MarkupCompile.cache
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Debug\RouteLists.g.resources
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Debug\RouteLists.Properties.Resources.resources
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Debug\RouteLists.csproj.GenerateResource.cache
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Debug\RouteLists.csproj.CoreCompileInputs.cache
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\bin\Debug\RouteLists.exe.config
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\bin\Debug\RouteLists.exe
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\bin\Debug\RouteLists.pdb
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Debug\RouteLists.exe
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Debug\RouteLists.pdb
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Debug\View\Windows\WindowMain.g.cs
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Debug\RouteLists_MarkupCompile.lref
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Debug\View\Windows\WindowMain.baml
