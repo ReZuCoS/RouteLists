@@ -6,21 +6,22 @@ using System.Threading.Tasks;
 
 namespace RouteLists.Services
 {
-    internal class SQLServerService
+    public static class SQLServiceController
     {
-        private ServiceController _service =>
+        private static ServiceController _service =>
             new ServiceController(ConfigurationManager.AppSettings["ServiceName"]);
 
-        public ServiceControllerStatus Status()
-        {
-            return _service.Status;
-        }
+        public static ServiceControllerStatus Status() => 
+            _service.Status;
 
-        public void Start()
+        public static void Start()
         {
             try
             {
-                _service.Start();
+                if(_service.Status != ServiceControllerStatus.Running)
+                {
+                    _service.Start();
+                }
 
                 while (_service.Status != ServiceControllerStatus.Running)
                 {
@@ -29,16 +30,19 @@ namespace RouteLists.Services
             }
             catch (InvalidOperationException ex)
             {
-                MessageBox.Show(ex.Message, ex.GetType().ToString(), MessageBoxButton.OK);
+                MessageBox.Show(ex.InnerException.Message, ex.GetType().ToString(), MessageBoxButton.OK);
                 return;
             }
         }
 
-        public void Stop()
+        public static void Stop()
         {
             try
             {
-                _service.Stop();
+                if (_service.Status == ServiceControllerStatus.Running)
+                {
+                    _service.Stop();
+                }
 
                 while (_service.Status != ServiceControllerStatus.Stopped)
                 {

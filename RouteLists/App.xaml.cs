@@ -1,14 +1,11 @@
 ﻿using System.Windows;
 using System.Diagnostics;
 using RouteLists.Services;
-using RouteLists.View.Windows;
 
 namespace RouteLists
 {
     public partial class App : Application
     {
-        private readonly SQLServerService _sqlServerService = new SQLServerService();
-
         protected override void OnStartup(StartupEventArgs e)
         {
             if (!IsApplicationUnique())
@@ -17,17 +14,14 @@ namespace RouteLists
                 return;
             }
             
-            _sqlServerService.Start();
-
-            WindowMain window = new WindowMain();
-            window.Show();
+            SQLServiceController.Start();
 
             base.OnStartup(e);
         }
 
         protected override void OnExit(ExitEventArgs e)
         {
-            _sqlServerService.Stop();
+            SQLServiceController.Stop();
 
             base.OnExit(e);
         }
