@@ -5,14 +5,118 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RouteLists.View.Windows"
         mc:Ignorable="d"
-        Height="500"
-        Width="800"
-        MinHeight="500"
-        MinWidth="800"
+        Height="700"
+        Width="1000"
+        MinHeight="600"
+        MinWidth="900"
         MaxHeight="{x:Static SystemParameters.PrimaryScreenHeight}"
         MaxWidth="{x:Static SystemParameters.PrimaryScreenWidth}"
         WindowStartupLocation="CenterScreen"
-        Background="#FFEDEEF0"
+        Background="{StaticResource mainBackBrush}"
         SnapsToDevicePixels="True">
-    
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="1">
+            
+        </Grid>
+
+        <Grid Grid.Column="0">
+            <Border BorderBrush="{StaticResource addBackBrush}"
+                    Background="{StaticResource addBackBrush}">
+                <Border.Effect>
+                    <DropShadowEffect Color="{StaticResource borderColor}"
+                                      BlurRadius="5"
+                                      ShadowDepth="0"
+                                      RenderingBias="Quality"/>
+                </Border.Effect>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="75"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="1" Margin="0 5 0 0">
+                        <StackPanel Orientation="Vertical">
+                            <Button Template="{StaticResource LeftMenuButton}"
+                                    Content="Маршруты">
+                                <Button.Resources>
+                                    <ImageSource x:Key="ButtonImage">
+                                        \Resources\Images\RouteLists.png
+                                    </ImageSource>
+                                </Button.Resources>
+                            </Button>
+
+                            <Button Template="{StaticResource LeftMenuButton}"
+                                    Content="Автомобили">
+                                <Button.Resources>
+                                    <ImageSource x:Key="ButtonImage">
+                                        \Resources\Images\Cars.png
+                                    </ImageSource>
+                                </Button.Resources>
+                            </Button>
+
+                            <Button Template="{StaticResource LeftMenuButton}"
+                                    Content="Сотрудники">
+                                <Button.Resources>
+                                    <ImageSource x:Key="ButtonImage">
+                                        \Resources\Images\Employees.png
+                                    </ImageSource>
+                                </Button.Resources>
+                            </Button>
+
+                            <Button Template="{StaticResource LeftMenuButton}"
+                                    Content="Компании">
+                                <Button.Resources>
+                                    <ImageSource x:Key="ButtonImage">
+                                        \Resources\Images\Companies.png
+                                    </ImageSource>
+                                </Button.Resources>
+                            </Button>
+
+                            <Button Template="{StaticResource LeftMenuButton}"
+                                    Content="Менеджеры">
+                                <Button.Resources>
+                                    <ImageSource x:Key="ButtonImage">
+                                        \Resources\Images\Managers.png
+                                    </ImageSource>
+                                </Button.Resources>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Grid.Row="0">
+                        <Border Background="{StaticResource accentBrush}"
+                                CornerRadius="0 0 20 0">
+                            <Border.Effect>
+                                <DropShadowEffect Color="{StaticResource borderColor}"
+                                                  ShadowDepth="2"
+                                                  BlurRadius="5"
+                                                  Direction="195"/>
+                            </Border.Effect>
+
+                            <Grid>
+                                <Grid Grid.Column="0">
+                                    <Image Margin="5"
+                                           HorizontalAlignment="Center"
+                                           Width="auto"
+                                           Source="{StaticResource appWideLogo}"/>
+
+                                    <Label Name="labelAppVersion"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Left"
+                                           FontSize="14"/>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
 </Window>

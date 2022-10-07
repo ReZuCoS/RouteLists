@@ -86,6 +86,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Services\SQLServerService.cs" />
+    <Compile Include="View\Pages\PageCars.xaml.cs">
+      <DependentUpon>PageCars.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\PageRouteLists.xaml.cs">
+      <DependentUpon>PageRouteLists.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Windows\WindowMain.xaml.cs">
       <DependentUpon>WindowMain.xaml</DependentUpon>
     </Compile>
@@ -113,6 +119,48 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNova-Black.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNova-BlackIt.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNova-Bold.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNova-BoldIt.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNova-Extrabld.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNova-ExtrabldIt.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNova-Light.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNova-LightIt.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNova-Regular.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNova-RegularIt.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNova-Semibold.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNova-SemiboldIt.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNova-ThinIt.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNovaCond-Black.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNovaCond-BlackIt.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNovaCond-Bold.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNovaCond-BoldIt.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNovaCond-Extrabld.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNovaCond-ExtrabldIt.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNovaCond-Light.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNovaCond-LightIt.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNovaCond-Regular.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNovaCond-RegularIt.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNovaCond-Semibold.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNovaCond-SemiboldIt.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNovaCond-Thin.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNovaCond-ThinIt.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNovaExCn-Black.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNovaExCn-BlackIt.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNovaExCn-Bold.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNovaExCn-BoldIt.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNovaExCn-Extrabld.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNovaExCn-ExtrabldIt.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNovaExCn-Light.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNovaExCn-LightIt.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNovaExCn-Regular.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNovaExCn-RegularIt.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNovaExCn-Semibold.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNovaExCn-SemiboldIt.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNovaExCn-Thin.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNovaExCn-ThinIt.ttf" />
+    <Resource Include="Resources\Fonts\ProximaNova\ProximaNovaT-Thin.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -133,10 +181,68 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Resources\Dictionaries\Brushes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Dictionaries\Colors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Dictionaries\Fonts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Dictionaries\Images.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Dictionaries\Styles\ButtonStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Dictionaries\Styles\DatePickerStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Dictionaries\Styles\ImageStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Dictionaries\Styles\LabelStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Dictionaries\Styles\TextBoxStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Dictionaries\Templates\ButtonTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\PageCars.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\PageRouteLists.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Windows\WindowMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\WideLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Cars.png" />
+    <Resource Include="Resources\Images\Companies.png" />
+    <Resource Include="Resources\Images\Employees.png" />
+    <Resource Include="Resources\Images\Managers.png" />
+    <Resource Include="Resources\Images\RouteLists.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,6 +1,6 @@
-﻿using System.Windows;
+﻿using RouteLists.Services;
 using System.Diagnostics;
-using RouteLists.Services;
+using System.Windows;
 
 namespace RouteLists
 {
@@ -13,7 +13,7 @@ namespace RouteLists
                 App.Current.Shutdown();
                 return;
             }
-            
+
             SQLServiceController.Start();
 
             base.OnStartup(e);
@@ -30,9 +30,9 @@ namespace RouteLists
         {
             Process[] processes = Process.GetProcesses();
 
-            foreach(Process p in processes)
+            foreach (Process p in processes)
             {
-                if(p.ProcessName == "RouteLists" &&
+                if (p.ProcessName == "RouteLists" &&
                    p.Id != Process.GetCurrentProcess().Id)
                 {
                     MessageBox.Show("Запущен другой процесс приложения!", "Ошибка",

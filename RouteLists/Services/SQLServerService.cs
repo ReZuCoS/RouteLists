@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Windows;
 using System.Configuration;
 using System.ServiceProcess;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace RouteLists.Services
 {
@@ -11,14 +11,13 @@ namespace RouteLists.Services
         private static ServiceController _service =>
             new ServiceController(ConfigurationManager.AppSettings["ServiceName"]);
 
-        public static ServiceControllerStatus Status() => 
+        public static ServiceControllerStatus Status() =>
             _service.Status;
-
         public static void Start()
         {
             try
             {
-                if(_service.Status != ServiceControllerStatus.Running)
+                if (_service.Status != ServiceControllerStatus.Running)
                 {
                     _service.Start();
                 }
@@ -34,7 +33,6 @@ namespace RouteLists.Services
                 return;
             }
         }
-
         public static void Stop()
         {
             try
