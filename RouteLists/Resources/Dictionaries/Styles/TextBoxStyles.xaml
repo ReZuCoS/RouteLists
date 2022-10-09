@@ -10,7 +10,7 @@
         <Setter Property="Height" Value="33"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Foreground" Value="{StaticResource borderBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource foreBrush}"/>
         <Setter Property="CaretBrush" Value="{StaticResource borderBrush}"/>
         <Setter Property="FontFamily" Value="{StaticResource defaultFont}"/>
         <Setter Property="SelectionBrush" Value="{StaticResource foreSelectionBrush}"/>

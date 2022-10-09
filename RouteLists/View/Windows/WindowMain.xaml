@@ -22,12 +22,13 @@
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="1">
-            
+            <Frame Name="mainFrame"
+                   NavigationUIVisibility="Hidden"/>
         </Grid>
 
         <Grid Grid.Column="0">
-            <Border BorderBrush="{StaticResource addBackBrush}"
-                    Background="{StaticResource addBackBrush}">
+            <Border BorderBrush="{StaticResource accentBrush}"
+                    Background="{StaticResource accentBrush}">
                 <Border.Effect>
                     <DropShadowEffect Color="{StaticResource borderColor}"
                                       BlurRadius="5"
@@ -42,9 +43,11 @@
                     </Grid.RowDefinitions>
 
                     <Grid Grid.Row="1" Margin="0 5 0 0">
-                        <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Vertical"
+                                    FocusManager.IsFocusScope="True">
                             <Button Template="{StaticResource LeftMenuButton}"
-                                    Content="Маршруты">
+                                    Content="Маршруты"
+                                    IsTabStop="False">
                                 <Button.Resources>
                                     <ImageSource x:Key="ButtonImage">
                                         \Resources\Images\RouteLists.png
@@ -53,7 +56,10 @@
                             </Button>
 
                             <Button Template="{StaticResource LeftMenuButton}"
-                                    Content="Автомобили">
+                                    Content="Автомобили"
+                                    Name="OpenVehicleListButton"
+                                    IsTabStop="False"
+                                    Click="OpenVehicleList">
                                 <Button.Resources>
                                     <ImageSource x:Key="ButtonImage">
                                         \Resources\Images\Cars.png
@@ -62,6 +68,7 @@
                             </Button>
 
                             <Button Template="{StaticResource LeftMenuButton}"
+                                    IsTabStop="False"
                                     Content="Сотрудники">
                                 <Button.Resources>
                                     <ImageSource x:Key="ButtonImage">
@@ -71,6 +78,7 @@
                             </Button>
 
                             <Button Template="{StaticResource LeftMenuButton}"
+                                    IsTabStop="False"
                                     Content="Компании">
                                 <Button.Resources>
                                     <ImageSource x:Key="ButtonImage">
@@ -80,6 +88,7 @@
                             </Button>
 
                             <Button Template="{StaticResource LeftMenuButton}"
+                                    IsTabStop="False"
                                     Content="Менеджеры">
                                 <Button.Resources>
                                     <ImageSource x:Key="ButtonImage">
@@ -91,7 +100,7 @@
                     </Grid>
 
                     <Grid Grid.Row="0">
-                        <Border Background="{StaticResource accentBrush}"
+                        <Border Background="{StaticResource iBeamBrush}"
                                 CornerRadius="0 0 20 0">
                             <Border.Effect>
                                 <DropShadowEffect Color="{StaticResource borderColor}"
@@ -110,7 +119,8 @@
                                     <Label Name="labelAppVersion"
                                            VerticalAlignment="Bottom"
                                            HorizontalAlignment="Left"
-                                           FontSize="14"/>
+                                           FontSize="14"
+                                           Foreground="#FFDADAE4"/>
                                 </Grid>
                             </Grid>
                         </Border>

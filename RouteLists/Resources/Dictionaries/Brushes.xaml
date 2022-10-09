@@ -11,6 +11,7 @@
     <SolidColorBrush x:Key="unactiveBrush" Color="{StaticResource unactiveColor}"/>
     <SolidColorBrush x:Key="foreSelectionBrush" Color="{StaticResource foreSelectionColor}"/>
     <SolidColorBrush x:Key="passActiveBrush" Color="{StaticResource passActive}"/>
+    <SolidColorBrush x:Key="passStartsExpiresBrush" Color="{StaticResource passStartsExpires}"/>
     <SolidColorBrush x:Key="passExpiredBrush" Color="{StaticResource passExpired}"/>
 
 </ResourceDictionary>

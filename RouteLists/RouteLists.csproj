@@ -58,11 +58,24 @@
   <PropertyGroup>
     <ApplicationManifest>Resources\app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>RouteLists.App</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -85,9 +98,20 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Model\Company.cs" />
+    <Compile Include="Model\Driver.cs" />
+    <Compile Include="Model\Manager.cs" />
+    <Compile Include="Model\ModelRouteListsDB.cs" />
+    <Compile Include="Model\PassType.cs" />
+    <Compile Include="Model\PointsAction.cs" />
+    <Compile Include="Model\RouteList.cs" />
+    <Compile Include="Model\RoutePoint.cs" />
+    <Compile Include="Model\Vehicle.cs" />
+    <Compile Include="Model\VehiclePass.cs" />
     <Compile Include="Services\SQLServerService.cs" />
-    <Compile Include="View\Pages\PageCars.xaml.cs">
-      <DependentUpon>PageCars.xaml</DependentUpon>
+    <Compile Include="ViewModel\DatabaseContext.cs" />
+    <Compile Include="View\Pages\PageVehicles.xaml.cs">
+      <DependentUpon>PageVehicles.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\PageRouteLists.xaml.cs">
       <DependentUpon>PageRouteLists.xaml</DependentUpon>
@@ -114,6 +138,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Resources\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -221,7 +246,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\PageCars.xaml">
+    <Page Include="Resources\Dictionaries\Styles\ComboBoxItemContainerStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Dictionaries\Styles\ComboBoxStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\PageVehicles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -244,5 +277,6 @@
     <Resource Include="Resources\Images\Managers.png" />
     <Resource Include="Resources\Images\RouteLists.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

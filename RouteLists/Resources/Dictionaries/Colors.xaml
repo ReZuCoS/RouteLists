@@ -5,12 +5,13 @@
     <Color x:Key="foreColor">#FF151515</Color>
     <Color x:Key="borderColor">#FF353535</Color>
     <Color x:Key="accentColor">#FFADC9F8</Color>
-    <Color x:Key="iBeamColor">#FF3B83FF</Color>
+    <Color x:Key="iBeamColor">#FF3B75FF</Color>
     <Color x:Key="addBackColor">#FFDFE5FF</Color>
     <Color x:Key="mainBackColor">#FFF0F0F0</Color>
-    <Color x:Key="unactiveColor">#FF757575</Color>
+    <Color x:Key="unactiveColor">#FF707070</Color>
     <Color x:Key="foreSelectionColor">#FF353535</Color>
     <Color x:Key="passActive">#FF90EE90</Color>
+    <Color x:Key="passStartsExpires">#FFEEEB90</Color>
     <Color x:Key="passExpired">#FFCD5C5C</Color>
 
 </ResourceDictionary>
