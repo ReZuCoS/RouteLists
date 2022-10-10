@@ -18,9 +18,30 @@ namespace RouteLists.View.Windows
 
         private void OpenVehicleList(object sender, RoutedEventArgs e)
         {
-            PageVehicles pageVehicles = new PageVehicles();
+            PageVehicles page = new PageVehicles();
 
-            mainFrame.Navigate(pageVehicles);
+            mainFrame.Navigate(page);
+        }
+
+        private void OpenDriversList(object sender, RoutedEventArgs e)
+        {
+            PageDrivers page = new PageDrivers();
+
+            mainFrame.Navigate(page);
+        }
+
+        private void OpenCompaniesList(object sender, RoutedEventArgs e)
+        {
+            PageCompanies page = new PageCompanies();
+
+            mainFrame.Navigate(page);
+        }
+
+        private void OpenManagersList(object sender, RoutedEventArgs e)
+        {
+            PageManagers page = new PageManagers();
+
+            mainFrame.Navigate(page);
         }
 
         private void OnNavigatedClearFrameHistory(object sender, NavigationEventArgs e)

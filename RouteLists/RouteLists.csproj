@@ -110,6 +110,15 @@
     <Compile Include="Model\VehiclePass.cs" />
     <Compile Include="Services\SQLServerService.cs" />
     <Compile Include="ViewModel\DatabaseContext.cs" />
+    <Compile Include="View\Pages\PageCompanies.xaml.cs">
+      <DependentUpon>PageCompanies.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\PageDrivers.xaml.cs">
+      <DependentUpon>PageDrivers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\PageManagers.xaml.cs">
+      <DependentUpon>PageManagers.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\PageVehicles.xaml.cs">
       <DependentUpon>PageVehicles.xaml</DependentUpon>
     </Compile>
@@ -254,6 +263,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Pages\PageCompanies.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\PageDrivers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\PageManagers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\PageVehicles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -277,6 +298,8 @@
     <Resource Include="Resources\Images\Managers.png" />
     <Resource Include="Resources\Images\RouteLists.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Images\Copy.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

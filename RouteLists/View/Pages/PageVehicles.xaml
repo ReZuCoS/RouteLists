@@ -19,11 +19,16 @@
         <Grid Grid.Row="1">
             <ListView Name="listViewMain"
                       Background="{StaticResource mainBackBrush}"
-                      ScrollViewer.CanContentScroll="True"
+                      ScrollViewer.CanContentScroll="False"
                       HorizontalAlignment="Stretch"
                       d:ItemsSource="{d:SampleData ItemCount=2}">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="{x:Type ListViewItem}">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="IsSelected" Value="True"/>
+                            </Trigger>
+                        </Style.Triggers>
                         <Setter Property="Background" Value="Transparent" />
                         <Setter Property="Template">
                             <Setter.Value>
@@ -39,14 +44,15 @@
                     <DataTemplate>
                         <Border BorderThickness="2"
                                 Margin="5"
-                                CornerRadius="5"
-                                Background="{StaticResource mainBackBrush}">
+                                CornerRadius="5">
                             <Border.Style>
                                 <Style TargetType="{x:Type Border}">
                                     <Setter Property="BorderBrush" Value="{StaticResource unactiveBrush}"/>
+                                    <Setter Property="Background" Value="{StaticResource mainBackBrush}"/>
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
                                             <Setter Property="BorderBrush" Value="{StaticResource foreSelectionBrush}"/>
+                                            <Setter Property="Background" Value="{StaticResource addBackBrush}"/>
                                         </Trigger>
                                     </Style.Triggers>
                                 </Style>
@@ -154,7 +160,6 @@
                                 <Grid Grid.Column="2"
                                       Grid.RowSpan="2"
                                       Width="275">
-
                                     <Grid.Style>
                                         <Style TargetType="Grid">
                                             <Setter Property="Visibility" Value="Hidden"/>
@@ -162,7 +167,7 @@
                                                 <DataTrigger Binding="{Binding HasVehiclePass}" Value="True">
                                                     <Setter Property="Visibility" Value="Visible"/>
                                                 </DataTrigger>
-                                                <DataTrigger Binding="{Binding VehiclePass.PassTypeID}" Value="1">
+                                                <DataTrigger Binding="{Binding VehiclePass.PassTypeID}" Value="0">
                                                     <Setter Property="Visibility" Value="Hidden"/>
                                                 </DataTrigger>
                                             </Style.Triggers>
@@ -200,7 +205,7 @@
                                     </Border>
 
                                     <Border Grid.Row="1"
-                                            Background="Transparent"
+                                            Background="{StaticResource mainBackBrush}"
                                             BorderBrush="{StaticResource foreBrush}"
                                             BorderThickness="2"
                                             CornerRadius="0 0 5 5"
@@ -231,8 +236,6 @@
                                                     </TextBlock>
                                                 </Label.Content>
                                             </Label>
-
-
                                         </StackPanel>
                                     </Border>
                                 </Grid>
@@ -250,7 +253,7 @@
                         HorizontalAlignment="Left">
                 <Label Content="Поиск по гос. номеру:"/>
 
-                <TextBox Width="255"
+                <TextBox Width="270"
                          Name="textBoxSearh"
                          TextChanged="ListUpdateOnSearh"
                          MaxLength="20"/>
@@ -261,14 +264,14 @@
                 <Label Content="Пропуск:"/>
 
                 <ComboBox HorizontalAlignment="Left"
-                          Width="200"
+                          Width="255"
                           SelectedIndex="0"
                           SelectionChanged="UpdateListOnFilterChange"
                           Name="comboBoxPassFilter">
                     <ComboBoxItem Content="Нет"/>
                     <ComboBoxItem Content="Действует"/>
                     <ComboBoxItem Content="Истекает"/>
-                    <ComboBoxItem Content="Истёк"/>
+                    <ComboBoxItem Content="Истёк/Отсутствует"/>
                 </ComboBox>
             </StackPanel>
         </Grid>
@@ -281,7 +284,8 @@
                     HorizontalAlignment="Left"
                     Content="Добавить"
                     Name="addButton"
-                    Style="{StaticResource defaultButton}"/>
+                    Style="{StaticResource defaultButton}"
+                    ToolTip="Добавить новый автомобиль"/>
         </Grid>
     </Grid>
 </Page>

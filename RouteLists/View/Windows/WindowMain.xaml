@@ -69,7 +69,7 @@
 
                             <Button Template="{StaticResource LeftMenuButton}"
                                     IsTabStop="False"
-                                    Content="Сотрудники">
+                                    Content="Сотрудники" Click="OpenDriversList">
                                 <Button.Resources>
                                     <ImageSource x:Key="ButtonImage">
                                         \Resources\Images\Employees.png
@@ -79,7 +79,7 @@
 
                             <Button Template="{StaticResource LeftMenuButton}"
                                     IsTabStop="False"
-                                    Content="Компании">
+                                    Content="Компании" Click="OpenCompaniesList">
                                 <Button.Resources>
                                     <ImageSource x:Key="ButtonImage">
                                         \Resources\Images\Companies.png
@@ -89,7 +89,7 @@
 
                             <Button Template="{StaticResource LeftMenuButton}"
                                     IsTabStop="False"
-                                    Content="Менеджеры">
+                                    Content="Менеджеры" Click="OpenManagersList">
                                 <Button.Resources>
                                     <ImageSource x:Key="ButtonImage">
                                         \Resources\Images\Managers.png

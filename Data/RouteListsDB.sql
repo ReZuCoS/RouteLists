@@ -4,11 +4,21 @@ USE RouteListsDB
 GO
 
 CREATE TABLE PassTypes(
-	ID INT NOT NULL IDENTITY(1, 1),
+	ID INT NOT NULL IDENTITY(0, 1),
 	Title NVARCHAR(150) NOT NULL,
 
 	PRIMARY KEY(ID)
 )
+GO
+
+SET IDENTITY_INSERT PassTypes ON
+GO
+
+INSERT INTO PassTypes (ID, Title)
+VALUES
+(0, N'Нет'),
+(1, N'ТТК'),
+(2, N'СК')
 GO
 
 CREATE TABLE Vehicles(
@@ -60,7 +70,7 @@ CREATE TABLE Managers(
 	Surname NVARCHAR(75) NULL,
 	Name NVARCHAR(75) NULL,
 	Pathronymic NVARCHAR(75) NULL,
-	Phone NVARCHAR(20) UNIQUE,
+	Phone NVARCHAR(20) NOT NULL UNIQUE,
 
 	PRIMARY KEY(ID),
 	FOREIGN KEY(CompanyID) REFERENCES Companies(ID)
@@ -80,11 +90,20 @@ CREATE TABLE RouteLists(
 GO
 
 CREATE TABLE PointsAction(
-	ID INT NOT NULL IDENTITY(1, 1),
+	ID INT NOT NULL IDENTITY(0, 1),
 	Action NVARCHAR(20) NOT NULL,
 
 	PRIMARY KEY(ID)
 )
+GO
+
+SET IDENTITY_INSERT PointsAction ON
+GO
+
+INSERT INTO PointsAction (ID, Action)
+VALUES
+(0, N'Погрузка'),
+(1, N'Выгрузка')
 GO
 
 CREATE TABLE RoutePoints(

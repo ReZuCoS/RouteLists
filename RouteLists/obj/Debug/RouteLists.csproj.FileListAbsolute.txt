@@ -36,3 +36,9 @@ C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Debug\RouteLists.cs
 C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Debug\RouteLists.csproj.CopyComplete
 C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Debug\Resources\Dictionaries\Styles\ComboBoxItemContainerStyles.baml
 C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Debug\Resources\Dictionaries\Styles\ComboBoxStyles.baml
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Debug\View\Pages\PageDrivers.g.cs
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Debug\View\Pages\PageDrivers.baml
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Debug\View\Pages\PageCompanies.g.cs
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Debug\View\Pages\PageCompanies.baml
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Debug\View\Pages\PageManagers.g.cs
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Debug\View\Pages\PageManagers.baml

@@ -25,14 +25,29 @@ namespace RouteLists.Model
         [StringLength(75)]
         public string Patronymic { get; set; }
 
+        public string FIO { get => $"{Surname} {Name} {Patronymic}"; }
+
         [Column(TypeName = "date")]
         public DateTime Bithday { get; set; }
+
+        public int Age { get => GetAge(Bithday); }
+
+        public static int GetAge(DateTime birthDate)
+        {
+            DateTime now = DateTime.Today;
+            int age = now.Year - birthDate.Year;
+            if (birthDate > now.AddYears(-age)) age--;
+
+            return age;
+        }
 
         public int DrivingExperience { get; set; }
 
         public int? MainVehicle { get; set; }
 
         public virtual Vehicle Vehicle { get; set; }
+
+        public bool HasVehicle { get => Vehicle != null; }
 
         public virtual ICollection<RouteList> RouteLists { get; set; }
     }

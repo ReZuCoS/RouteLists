@@ -15,6 +15,7 @@ namespace RouteLists.View.Pages
         public PageVehicles()
         {
             InitializeComponent();
+            UpdateList();
         }
         
         private void ListUpdateOnSearh(object sender, TextChangedEventArgs e)

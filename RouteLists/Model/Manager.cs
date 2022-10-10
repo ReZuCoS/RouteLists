@@ -23,6 +23,8 @@ namespace RouteLists.Model
         [StringLength(75)]
         public string Pathronymic { get; set; }
 
+        public string FIO { get => $"{Surname} {Name} {Pathronymic}"; }
+
         [StringLength(20)]
         public string Phone { get; set; }
 

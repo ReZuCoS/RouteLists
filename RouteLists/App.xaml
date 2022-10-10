@@ -18,7 +18,7 @@
                 <ResourceDictionary Source="\Resources\Dictionaries\Styles\ComboBoxStyles.xaml"/>
                 <ResourceDictionary Source="\Resources\Dictionaries\Styles\DatePickerStyles.xaml"/>
                 <ResourceDictionary Source="\Resources\Dictionaries\Templates\ButtonTemplates.xaml"/>
-                <ResourceDictionary Source="\Resources\Dictionaries\Styles\ComboBoxItemContainerStyles.xaml"/>
+                <ResourceDictionary Source="\Resources\Dictionaries\Styles\ComboBoxItemContainerStyles.xaml"/> 
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
