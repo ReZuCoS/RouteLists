@@ -1,4 +1,4 @@
-﻿using RouteLists.View.Pages;
+﻿using RouteLists.View.Pages.ListPages;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Navigation;
@@ -18,30 +18,22 @@ namespace RouteLists.View.Windows
 
         private void OpenVehicleList(object sender, RoutedEventArgs e)
         {
-            PageVehicles page = new PageVehicles();
-
-            mainFrame.Navigate(page);
+            mainFrame.Navigate(new PageVehicles());
         }
 
         private void OpenDriversList(object sender, RoutedEventArgs e)
         {
-            PageDrivers page = new PageDrivers();
-
-            mainFrame.Navigate(page);
+            mainFrame.Navigate(new PageDrivers());
         }
 
         private void OpenCompaniesList(object sender, RoutedEventArgs e)
         {
-            PageCompanies page = new PageCompanies();
-
-            mainFrame.Navigate(page);
+            mainFrame.Navigate(new PageCompanies());
         }
 
         private void OpenManagersList(object sender, RoutedEventArgs e)
         {
-            PageManagers page = new PageManagers();
-
-            mainFrame.Navigate(page);
+            mainFrame.Navigate(new PageManagers());
         }
 
         private void OnNavigatedClearFrameHistory(object sender, NavigationEventArgs e)

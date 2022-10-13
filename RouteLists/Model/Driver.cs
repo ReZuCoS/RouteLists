@@ -30,9 +30,9 @@ namespace RouteLists.Model
         [Column(TypeName = "date")]
         public DateTime Bithday { get; set; }
 
-        public int Age { get => GetAge(Bithday); }
+        public int Age { get => GetAgeFromBithday(Bithday); }
 
-        public static int GetAge(DateTime birthDate)
+        public static int GetAgeFromBithday(DateTime birthDate)
         {
             DateTime now = DateTime.Today;
             int age = now.Year - birthDate.Year;

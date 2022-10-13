@@ -8,4 +8,11 @@
         </BitmapImage.UriSource>
     </BitmapImage>
 
+    <!-- CheckBox mark -->
+    <BitmapImage x:Key="checkMark">
+        <BitmapImage.UriSource>
+            \Resources\Images\CheckMark.png
+        </BitmapImage.UriSource>
+    </BitmapImage>
+    
 </ResourceDictionary>

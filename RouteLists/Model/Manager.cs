@@ -21,9 +21,9 @@ namespace RouteLists.Model
         public string Name { get; set; }
 
         [StringLength(75)]
-        public string Pathronymic { get; set; }
+        public string Patronymic { get; set; }
 
-        public string FIO { get => $"{Surname} {Name} {Pathronymic}"; }
+        public string FIO { get => $"{Surname} {Name} {Patronymic}"; }
 
         [StringLength(20)]
         public string Phone { get; set; }

@@ -6,7 +6,6 @@
         <Setter Property="FontSize" Value="24"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
-        <Setter Property="Background" Value="{StaticResource addBackBrush}"/>
         <Setter Property="Height" Value="33"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -14,6 +13,7 @@
         <Setter Property="CaretBrush" Value="{StaticResource borderBrush}"/>
         <Setter Property="FontFamily" Value="{StaticResource defaultFont}"/>
         <Setter Property="SelectionBrush" Value="{StaticResource foreSelectionBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource borderBrush}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
@@ -21,9 +21,23 @@
                           Width="{TemplateBinding Width}"
                           Height="{TemplateBinding Height}">
                         <Border CornerRadius="2"
-                                Background="{TemplateBinding Background}"
-                                BorderBrush="{StaticResource borderBrush}"
-                                BorderThickness="2"/>
+                                Name="txtboxBorder"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="2"
+                                IsEnabled="{TemplateBinding IsEnabled}">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="Background" Value="{StaticResource addBackBrush}"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding
+                                                        ElementName=txtboxBorder,
+                                                        Path=IsEnabled}" Value="False">
+                                            <Setter Property="Background" Value="{StaticResource unactiveTransparentBrush}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                        </Border>
 
                         <ScrollViewer x:Name="PART_ContentHost"
                                       Margin="2"

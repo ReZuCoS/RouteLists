@@ -9,6 +9,7 @@
     <SolidColorBrush x:Key="addBackBrush" Color="{StaticResource addBackColor}"/>
     <SolidColorBrush x:Key="mainBackBrush" Color="{StaticResource mainBackColor}"/>
     <SolidColorBrush x:Key="unactiveBrush" Color="{StaticResource unactiveColor}"/>
+    <SolidColorBrush x:Key="unactiveTransparentBrush" Color="{StaticResource unactiveColor}" Opacity="0.25"/>
     <SolidColorBrush x:Key="foreSelectionBrush" Color="{StaticResource foreSelectionColor}"/>
     <SolidColorBrush x:Key="passActiveBrush" Color="{StaticResource passActive}"/>
     <SolidColorBrush x:Key="passStartsExpiresBrush" Color="{StaticResource passStartsExpires}"/>

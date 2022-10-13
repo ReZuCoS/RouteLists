@@ -110,20 +110,41 @@
     <Compile Include="Model\VehiclePass.cs" />
     <Compile Include="Services\SQLServerService.cs" />
     <Compile Include="ViewModel\DatabaseContext.cs" />
-    <Compile Include="View\Pages\PageCompanies.xaml.cs">
+    <Compile Include="ViewModel\OnlyDigitsConverter.cs" />
+    <Compile Include="ViewModel\OnlyLettersConverter.cs" />
+    <Compile Include="ViewModel\StringValidator.cs" />
+    <Compile Include="ViewModel\TonnageConverter.cs" />
+    <Compile Include="ViewModel\VehicleNumberConverter.cs" />
+    <Compile Include="View\Pages\EntityEditors\EntityPage.cs" />
+    <Compile Include="View\Pages\EntityEditors\PageEditCompany.xaml.cs">
+      <DependentUpon>PageEditCompany.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\EntityEditors\PageEditDriver.xaml.cs">
+      <DependentUpon>PageEditDriver.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\EntityEditors\PageEditManager.xaml.cs">
+      <DependentUpon>PageEditManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\EntityEditors\PageEditVehicle.xaml.cs">
+      <DependentUpon>PageEditVehicle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\ListPages\PageCompanies.xaml.cs">
       <DependentUpon>PageCompanies.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\PageDrivers.xaml.cs">
+    <Compile Include="View\Pages\ListPages\PageDrivers.xaml.cs">
       <DependentUpon>PageDrivers.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\PageManagers.xaml.cs">
+    <Compile Include="View\Pages\ListPages\PageManagers.xaml.cs">
       <DependentUpon>PageManagers.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\PageVehicles.xaml.cs">
+    <Compile Include="View\Pages\ListPages\PageVehicles.xaml.cs">
       <DependentUpon>PageVehicles.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\PageRouteLists.xaml.cs">
+    <Compile Include="View\Pages\ListPages\PageRouteLists.xaml.cs">
       <DependentUpon>PageRouteLists.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windows\WindowEntityEditor.xaml.cs">
+      <DependentUpon>WindowEntityEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Windows\WindowMain.xaml.cs">
       <DependentUpon>WindowMain.xaml</DependentUpon>
@@ -223,6 +244,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Dictionaries\Converters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Dictionaries\Fonts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -236,6 +261,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Dictionaries\Styles\DatePickerStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Dictionaries\Styles\DateTimePickerStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -263,23 +292,47 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\PageCompanies.xaml">
+    <Page Include="Resources\Dictionaries\Templates\CheckBoxTemplates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\PageDrivers.xaml">
+    <Page Include="View\Pages\EntityEditors\PageEditCompany.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\PageManagers.xaml">
+    <Page Include="View\Pages\EntityEditors\PageEditDriver.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\PageVehicles.xaml">
+    <Page Include="View\Pages\EntityEditors\PageEditManager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\PageRouteLists.xaml">
+    <Page Include="View\Pages\EntityEditors\PageEditVehicle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\ListPages\PageCompanies.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\ListPages\PageDrivers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\ListPages\PageManagers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\ListPages\PageVehicles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\ListPages\PageRouteLists.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Windows\WindowEntityEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -300,6 +353,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\Copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\CheckMark.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

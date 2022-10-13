@@ -49,8 +49,8 @@
     <SolidColorBrush x:Key="ComboBox.Pressed.Editable.Border" Color="{StaticResource borderColor}"/>
     <SolidColorBrush x:Key="ComboBox.Pressed.Editable.Button.Background" Color="{StaticResource mainBackColor}" Opacity="0.5"/>
     <SolidColorBrush x:Key="ComboBox.Pressed.Editable.Button.Border" Color="{StaticResource mainBackColor}" Opacity="0.5"/>
-    <SolidColorBrush x:Key="ComboBox.Disabled.Background" Color="#FFF0F0F0"/>
-    <SolidColorBrush x:Key="ComboBox.Disabled.Border" Color="#FFD9D9D9"/>
+    <SolidColorBrush x:Key="ComboBox.Disabled.Background" Color="{StaticResource addBackColor}"/>
+    <SolidColorBrush x:Key="ComboBox.Disabled.Border" Color="{StaticResource borderColor}" Opacity="0.5"/>
     <SolidColorBrush x:Key="ComboBox.Disabled.Glyph" Color="#FFBFBFBF"/>
     <SolidColorBrush x:Key="ComboBox.Disabled.Editable.Background" Color="#FFFFFFFF"/>
     <SolidColorBrush x:Key="ComboBox.Disabled.Editable.Border" Color="#FFBFBFBF"/>
@@ -174,7 +174,7 @@
 
             <Border x:Name="border"
                     Background="{StaticResource mainBackBrush}"
-                    Margin="{TemplateBinding BorderThickness}" BorderBrush="{StaticResource borderBrush}" BorderThickness="2 2 0 2">
+                    Margin="{TemplateBinding BorderThickness}" CornerRadius="2" BorderBrush="{StaticResource borderBrush}" BorderThickness="2 2 0 2">
                 <TextBox x:Name="PART_EditableTextBox" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" Margin="{TemplateBinding Padding}" Style="{StaticResource ComboBoxEditableTextBox}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
             </Border>
         </Grid>

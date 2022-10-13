@@ -1,10 +1,30 @@
+using RouteLists.ViewModel;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace RouteLists.Model
 {
     public partial class Vehicle
     {
+        public static string VehicleNumberFromString(string input)
+        {
+            string result = input
+                .Replace(" ", "")
+                .ToUpper()
+                .Insert(1, " ")
+                .Insert(5, " ")
+                .Insert(8, " ");
+
+            return result;
+        }
+
+        public static bool IsUniqueNumber(string number)
+        {
+            return !DatabaseContext.Database.Vehicles.ToList().Any(v =>
+            v.Number == number);
+        }
+
         public Vehicle()
         {
             Drivers = new HashSet<Driver>();

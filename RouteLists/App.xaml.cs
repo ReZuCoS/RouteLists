@@ -21,7 +21,8 @@ namespace RouteLists
 
         protected override void OnExit(ExitEventArgs e)
         {
-            SQLServiceController.Stop();
+            //TODO Enable SQL service Stopper
+            //SQLServiceController.Stop();
 
             base.OnExit(e);
         }
