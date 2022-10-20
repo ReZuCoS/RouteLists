@@ -5,6 +5,22 @@ namespace RouteLists.Model
 {
     public partial class Manager
     {
+        public static string GetPhoneFromString(string input)
+        {
+            string result = input.Replace(" ", "")
+                .Replace("+", "")
+                .Replace("-", "")
+                .Replace("(", "")
+                .Replace(")", "")
+                .Insert(0, "+")
+                .Insert(2, " (")
+                .Insert(7, ") ")
+                .Insert(12, "-")
+                .Insert(15, "-");
+
+            return result;
+        }
+
         public Manager()
         {
             RoutePoints = new HashSet<RoutePoint>();
@@ -23,7 +39,13 @@ namespace RouteLists.Model
         [StringLength(75)]
         public string Patronymic { get; set; }
 
-        public string FIO { get => $"{Surname} {Name} {Patronymic}"; }
+        public string FIO
+        {
+            get
+            {
+                return string.Join(" ", new List<string>() { Name, Patronymic, Surname });
+            }
+        }
 
         [StringLength(20)]
         public string Phone { get; set; }

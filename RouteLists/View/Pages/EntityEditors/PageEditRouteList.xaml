@@ -1,0 +1,145 @@
+﻿<local:EntityPage x:Class="RouteLists.View.Pages.EntityEditors.PageEditRouteList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RouteLists.View.Pages.EntityEditors"
+      mc:Ignorable="d"
+      Background="{StaticResource addBackBrush}">
+
+    <StackPanel Orientation="Vertical">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition MaxWidth="1000"
+                                  Width="*"
+                                  MinWidth="600"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0"
+                   Grid.Row="0"
+                   Content="Водитель (ФИО):"
+                   Margin="10 5"/>
+
+            <ComboBox Width="350"
+                      IsEditable="True"
+                      Grid.Row="0"
+                      Name="cBoxDriver"
+                      Height="37"
+                      MaxWidth="500"
+                      HorizontalAlignment="Left"
+                      SelectionChanged="SelectDefaultVehicleForDriver"
+                      IsTextSearchCaseSensitive="False"
+                      DisplayMemberPath="FIO"
+                      Grid.Column="2"
+                      Margin="10 5"/>
+
+            <Label Grid.Column="0"
+                   Grid.Row="1"
+                   Content="Автомобиль (Гос. номер):"
+                   Margin="10 5"/>
+
+            <ComboBox Width="350"
+                      IsEditable="True"
+                      Grid.Row="1"
+                      Height="37"
+                      MaxWidth="500"
+                      HorizontalAlignment="Left"
+                      Name="cBoxVehicle"
+                      IsTextSearchCaseSensitive="False"
+                      DisplayMemberPath="Number"
+                      Grid.Column="2"
+                      Margin="10 5"/>
+
+            <Label Grid.Column="0"
+                   Grid.Row="2"
+                   Content="Дата:"
+                   Margin="10 5"/>
+
+            <DatePicker Width="auto"
+                        Name="datePickerListDate"
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        Margin="10 5"/>
+
+            <Grid Grid.Row="3"
+                  Grid.ColumnSpan="3">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                
+                <DataGrid AutoGenerateColumns="False"
+                          Height="350"
+                          Margin="10"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
+                          Name="dataGridRoutePoints"
+                          FontSize="16"
+                          FontFamily="{StaticResource defaultFont}"
+                          CanUserResizeColumns="True"
+                          CanUserSortColumns="False"
+                          IsReadOnly="True"
+                          SelectionMode="Single">
+                    <DataGrid.Resources>
+                        <Style TargetType="DataGridRow">
+                            <EventSetter Event="MouseDoubleClick" Handler="EditSelectedRoutePoint"/>
+                        </Style>
+                    </DataGrid.Resources>
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="№&#10;п/п"
+                                            Binding="{Binding PointNumber}"/>
+
+                        <DataGridTextColumn Header="Действие"
+                                            Binding="{Binding Action}"/>
+
+                        <DataGridTextColumn Header="Адрес"
+                                            Binding="{Binding Address}"
+                                            Width="200"/>
+                        
+                        <DataGridTextColumn Header="Организация"
+                                            Binding="{Binding Manager.Company.Title}"
+                                            Width="125"/>
+                        
+                        <DataGridTextColumn Header="Менеджер"
+                                            Binding="{Binding Manager.FIO}"
+                                            Width="200"/>
+                        
+                        <DataGridTextColumn Header="Телефон"
+                                            Binding="{Binding Manager.Phone}"/>
+                        
+                        <DataGridTextColumn Header="Номер счёта"
+                                            Binding="{Binding InvoiceNumbers}"
+                                            Width="200"/>
+                        
+                        <DataGridTextColumn Header="Цена, ₽"
+                                            Binding="{Binding Cost}"/>
+                        
+                        <DataGridTextColumn Header="Комментарий"
+                                            Binding="{Binding Comment}"
+                                            Width="150"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <Grid Grid.Row="1"
+                      Margin="10 5 10 50">
+                    <Button Style="{StaticResource defaultButton}"
+                            Margin="0 0 5 0"
+                            HorizontalAlignment="Right"
+                            Content="Добавить"
+                            Click="AddRoutePoint"/>
+                </Grid>
+            </Grid>
+        </Grid>
+    </StackPanel>
+</local:EntityPage>

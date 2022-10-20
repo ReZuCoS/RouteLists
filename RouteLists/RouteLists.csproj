@@ -103,15 +103,16 @@
     <Compile Include="Model\Manager.cs" />
     <Compile Include="Model\ModelRouteListsDB.cs" />
     <Compile Include="Model\PassType.cs" />
-    <Compile Include="Model\PointsAction.cs" />
     <Compile Include="Model\RouteList.cs" />
     <Compile Include="Model\RoutePoint.cs" />
     <Compile Include="Model\Vehicle.cs" />
     <Compile Include="Model\VehiclePass.cs" />
     <Compile Include="Services\SQLServerService.cs" />
+    <Compile Include="ViewModel\CostConverter.cs" />
     <Compile Include="ViewModel\DatabaseContext.cs" />
     <Compile Include="ViewModel\OnlyDigitsConverter.cs" />
     <Compile Include="ViewModel\OnlyLettersConverter.cs" />
+    <Compile Include="ViewModel\PhoneNumberConverter.cs" />
     <Compile Include="ViewModel\StringValidator.cs" />
     <Compile Include="ViewModel\TonnageConverter.cs" />
     <Compile Include="ViewModel\VehicleNumberConverter.cs" />
@@ -124,6 +125,12 @@
     </Compile>
     <Compile Include="View\Pages\EntityEditors\PageEditManager.xaml.cs">
       <DependentUpon>PageEditManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\EntityEditors\PageEditRouteList.xaml.cs">
+      <DependentUpon>PageEditRouteList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\EntityEditors\PageEditRoutePoint.xaml.cs">
+      <DependentUpon>PageEditRoutePoint.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\EntityEditors\PageEditVehicle.xaml.cs">
       <DependentUpon>PageEditVehicle.xaml</DependentUpon>
@@ -305,6 +312,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\EntityEditors\PageEditManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\EntityEditors\PageEditRouteList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\EntityEditors\PageEditRoutePoint.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

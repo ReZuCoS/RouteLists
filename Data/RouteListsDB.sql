@@ -11,14 +11,11 @@ CREATE TABLE PassTypes(
 )
 GO
 
-SET IDENTITY_INSERT PassTypes ON
-GO
-
-INSERT INTO PassTypes (ID, Title)
+INSERT INTO PassTypes (Title)
 VALUES
-(0, N'Нет'),
-(1, N'ТТК'),
-(2, N'СК')
+(N'Нет'),
+(N'ТТК'),
+(N'СК')
 GO
 
 CREATE TABLE Vehicles(
@@ -78,10 +75,11 @@ CREATE TABLE Managers(
 GO
 
 CREATE TABLE RouteLists(
-	ID NVARCHAR(25) NOT NULL,
+	ID INT NOT NULL IDENTITY(1, 1),
 	DriverID INT NOT NULL,
 	VehicleID INT NOT NULL,
 	Date DATE NOT NULL,
+	ListNumberPerMonth INT NOT NULL,
 
 	PRIMARY KEY(ID),
 	FOREIGN KEY(DriverID) REFERENCES Drivers(ID),
@@ -89,35 +87,19 @@ CREATE TABLE RouteLists(
 )
 GO
 
-CREATE TABLE PointsAction(
-	ID INT NOT NULL IDENTITY(0, 1),
-	Action NVARCHAR(20) NOT NULL,
-
-	PRIMARY KEY(ID)
-)
-GO
-
-SET IDENTITY_INSERT PointsAction ON
-GO
-
-INSERT INTO PointsAction (ID, Action)
-VALUES
-(0, N'Погрузка'),
-(1, N'Выгрузка')
-GO
-
 CREATE TABLE RoutePoints(
-	RouteID NVARCHAR(25) NOT NULL,
+	ID INT NOT NULL IDENTITY(1, 1),
+	RouteID INT NOT NULL,
 	Address NVARCHAR(500) NOT NULL,
-	ActionID INT NOT NULL,
+	Action NVARCHAR(20) NOT NULL,
 	ManagerID INT NOT NULL,
 	InvoiceNumbers NVARCHAR(150) NOT NULL,
 	Cost DECIMAL(15,2) NULL,
 	Comment NVARCHAR(500) NULL,
+	PointNumber INT NULL,
 
-	PRIMARY KEY(RouteID),
+	PRIMARY KEY(ID),
 	FOREIGN KEY(RouteID) REFERENCES RouteLists(ID),
-	FOREIGN KEY(ManagerID) REFERENCES Managers(ID),
-	FOREIGN KEY(ActionID) REFERENCES PointsAction(ID)
+	FOREIGN KEY(ManagerID) REFERENCES Managers(ID)
 )
 GO

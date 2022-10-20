@@ -1,15 +1,19 @@
 ﻿using RouteLists.Model;
+using RouteLists.View.Pages.EntityEditors;
+using RouteLists.View.Windows;
 using RouteLists.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace RouteLists.View.Pages.ListPages
 {
     public partial class PageManagers : Page
     {
-        List<Manager> _managers = new List<Manager>();
+        private List<Manager> _managers = new List<Manager>();
 
         public PageManagers()
         {
@@ -17,12 +21,7 @@ namespace RouteLists.View.Pages.ListPages
             UpdateList();
         }
 
-        private void UpdateListOnSearch(object sender, TextChangedEventArgs e)
-        {
-            UpdateList();
-        }
-
-        private void UpdateList()
+        public void UpdateList()
         {
             _managers = DatabaseContext.Database.Managers.ToList();
 
@@ -36,6 +35,37 @@ namespace RouteLists.View.Pages.ListPages
             ).ToList();
 
             listViewMain.ItemsSource = _managers;
+        }
+
+        private void EditSelectedManager(object sender, MouseButtonEventArgs e)
+        {
+            Manager selectedManager = (Manager)listViewMain.SelectedItem;
+
+            WindowEntityEditor windowEditor = new WindowEntityEditor(new PageEditManager(selectedManager), true);
+
+            bool isListUpdated = (bool)windowEditor.ShowDialog();
+
+            if (isListUpdated)
+            {
+                UpdateList();
+            }
+        }
+
+        private void AddManager(object sender, RoutedEventArgs e)
+        {
+            WindowEntityEditor windowEditor = new WindowEntityEditor(new PageEditManager(), false);
+
+            bool isListUpdated = (bool)windowEditor.ShowDialog();
+
+            if (isListUpdated)
+            {
+                UpdateList();
+            }
+        }
+
+        private void UpdateListOnSearch(object sender, TextChangedEventArgs e)
+        {
+            UpdateList();
         }
     }
 }

@@ -5,6 +5,8 @@
     <vm:TonnageConverter x:Key="TonnageConverter" TonnageToPass="1000"/>
     <vm:OnlyDigitsConverter x:Key="OnlyDigitsConverter"/>
     <vm:OnlyLettersConverter x:Key="OnlyLettersConverter"/>
+    <vm:PhoneNumberConverter x:Key="PhoneNumberConverter"/>
     <vm:VehicleNumberConverter x:Key="VehicleNumberConverter"/>
+    <vm:CostConverter x:Key="CostConverter"/>
 
 </ResourceDictionary>

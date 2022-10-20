@@ -74,8 +74,9 @@
                         HorizontalAlignment="Left">
                 <Label Content="Поиск по наименованию:"/>
 
-                <TextBox Width="500"
+                <TextBox Width="400"
                          Name="textBoxSearh"
+                         HorizontalAlignment="Left"
                          TextChanged="UpdateListOnSearch"
                          MaxLength="20"/>
             </StackPanel>
@@ -90,7 +91,7 @@
                     Content="Добавить"
                     Name="addButton"
                     Style="{StaticResource defaultButton}"
-                    ToolTip="Добавить нового водителя" Click="AddCompany"/>
+                    ToolTip="Добавить компанию" Click="AddCompany"/>
         </Grid>
     </Grid>
 </Page>

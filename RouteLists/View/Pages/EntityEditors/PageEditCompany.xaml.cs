@@ -61,13 +61,13 @@ namespace RouteLists.View.Pages.EntityEditors
                 DatabaseContext.Database.Companies.Add(_company);
             }
 
-            AppendDriverData();
+            AppendCompanyData();
 
             DatabaseContext.SaveDatabase();
             return true;
         }
 
-        private void AppendDriverData()
+        private void AppendCompanyData()
         {
             _company.Title = txtBoxTitle.Text;
         }

@@ -7,6 +7,12 @@ namespace RouteLists.View.Windows
 {
     public partial class WindowMain : Window
     {
+        private readonly PageVehicles _pageVehicles = new PageVehicles();
+        private readonly PageDrivers _pageDrivers = new PageDrivers();
+        private readonly PageCompanies _pageCompanies = new PageCompanies();
+        private readonly PageManagers _pageManagers = new PageManagers();
+        private readonly PageRouteLists _pageRouteLists = new PageRouteLists();
+
         public WindowMain()
         {
             InitializeComponent();
@@ -18,22 +24,32 @@ namespace RouteLists.View.Windows
 
         private void OpenVehicleList(object sender, RoutedEventArgs e)
         {
-            mainFrame.Navigate(new PageVehicles());
+            _pageVehicles.UpdateList();
+            mainFrame.Navigate(_pageVehicles);
         }
 
         private void OpenDriversList(object sender, RoutedEventArgs e)
         {
-            mainFrame.Navigate(new PageDrivers());
+            _pageDrivers.UpdateList();
+            mainFrame.Navigate(_pageDrivers);
         }
 
         private void OpenCompaniesList(object sender, RoutedEventArgs e)
         {
-            mainFrame.Navigate(new PageCompanies());
+            _pageCompanies.UpdateList();
+            mainFrame.Navigate(_pageCompanies);
         }
 
         private void OpenManagersList(object sender, RoutedEventArgs e)
         {
-            mainFrame.Navigate(new PageManagers());
+            _pageManagers.UpdateList();
+            mainFrame.Navigate(_pageManagers);
+        }
+
+        private void OpenRouteList(object sender, RoutedEventArgs e)
+        {
+            _pageRouteLists.UpdateList();
+            mainFrame.Navigate(_pageRouteLists);
         }
 
         private void OnNavigatedClearFrameHistory(object sender, NavigationEventArgs e)

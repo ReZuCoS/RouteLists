@@ -18,6 +18,11 @@ namespace RouteLists.View.Windows
             this.Title = page.Title;
         }
 
+        public WindowEntityEditor(EntityPage page, bool editMode, bool isReadOnly) : this(page, false)
+        {
+            buttonSave.Visibility = isReadOnly ? Visibility.Hidden : Visibility.Visible;
+        }
+
         private void SaveEntity(object sender, RoutedEventArgs e)
         {
             if (_currentPage.EntitySaved())
@@ -36,7 +41,7 @@ namespace RouteLists.View.Windows
 
         private void CloseEditor(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = true;
+            this.DialogResult = false;
         }
     }
 }

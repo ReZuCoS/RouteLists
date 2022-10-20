@@ -1,11 +1,8 @@
 ﻿using RouteLists.Model;
 using RouteLists.ViewModel;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
 
 namespace RouteLists.View.Pages.EntityEditors
 {
@@ -47,7 +44,10 @@ namespace RouteLists.View.Pages.EntityEditors
 
             if (result == MessageBoxResult.Yes)
             {
-                List<RouteList> routeLists = DatabaseContext.Database.RouteLists.ToList().Where(rl => rl.DriverID == _driver.ID).ToList();
+                List<RoutePoint> routePoints = DatabaseContext.Database.RoutePoints.ToList().Where(rp => rp.RouteList.Driver == _driver).ToList();
+                DatabaseContext.Database.RoutePoints.RemoveRange(routePoints);
+
+                List<RouteList> routeLists = DatabaseContext.Database.RouteLists.ToList().Where(rl => rl.Driver == _driver).ToList();
                 DatabaseContext.Database.RouteLists.RemoveRange(routeLists);
 
                 DatabaseContext.Database.Drivers.Remove(_driver);

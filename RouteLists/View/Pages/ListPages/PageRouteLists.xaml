@@ -19,7 +19,8 @@
             <ListView Name="listViewMain"
                       Background="{StaticResource mainBackBrush}"
                       ScrollViewer.CanContentScroll="False"
-                      HorizontalAlignment="Stretch" d:ItemsSource="{d:SampleData ItemCount=5}">
+                      HorizontalAlignment="Stretch"
+                      d:ItemsSource="{d:SampleData ItemCount=2}">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="{x:Type ListViewItem}">
                         <Style.Triggers>
@@ -27,7 +28,8 @@
                                 <Setter Property="IsSelected" Value="True"/>
                             </Trigger>
                         </Style.Triggers>
-                        <Setter Property="Background" Value="Transparent" />
+                        <EventSetter Event="MouseDoubleClick" Handler="EditSelectedRouteList"/>
+                        <Setter Property="Background" Value="Transparent"/>
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type ListViewItem}">
@@ -58,47 +60,31 @@
 
                             <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
                                 </Grid.RowDefinitions>
 
                                 <Grid Grid.Row="0">
-                                    <Label Style="{StaticResource headerLabel}">
-                                        <Label.Content>
-                                            <TextBlock>
-                                                <TextBlock.Style>
-                                                    <Style TargetType="TextBlock">
-                                                        <Setter Property="Text">
-                                                            <Setter.Value>
-                                                                <MultiBinding StringFormat="{}{0} {1} {2}" >
-                                                                    <Binding Path="Surname" FallbackValue="{x:Null}"/>
-                                                                    <Binding Path="Name"/>
-                                                                    <Binding Path="Pathronymic" FallbackValue="{x:Null}"/>
-                                                                </MultiBinding>
-                                                            </Setter.Value>
-                                                        </Setter>
-                                                        <Style.Triggers>
-                                                            <DataTrigger Binding="{Binding Surname}" Value="{x:Null}">
-                                                                <Setter Property="Text">
-                                                                    <Setter.Value>
-                                                                        <MultiBinding StringFormat="{}{0} {1}">
-                                                                            <Binding Path="Name" FallbackValue="{x:Null}"/>
-                                                                            <Binding Path="Pathronymic" FallbackValue="{x:Null}"/>
-                                                                        </MultiBinding>
-                                                                    </Setter.Value>
-                                                                </Setter>
-                                                            </DataTrigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </TextBlock.Style>
-                                            </TextBlock>
-                                        </Label.Content>
-                                    </Label>
+                                    <Label Style="{StaticResource headerLabel}"
+                                           Content="{Binding ListNumber}"
+                                           VerticalAlignment="Center"/>
+
+                                    <Button Name="exportButton"
+                                            Background="Transparent"
+                                            BorderBrush="Transparent"
+                                            ToolTip="Экспорт"
+                                            Width="125"
+                                            Click="ExportSelectedRouteList"
+                                            Content="Экспорт"
+                                            HorizontalAlignment="Right"
+                                            Margin="10 5"
+                                            Style="{StaticResource defaultButton}"/>
                                 </Grid>
 
                                 <Grid Grid.Row="1">
                                     <StackPanel Orientation="Vertical"
-                                                Grid.Column="0">
+                                                Grid.Column="0"
+                                                HorizontalAlignment="Left">
                                         <Label Style="{StaticResource defaultWindowHeaderLabel}"
                                                FontStyle="Italic"
                                                FontSize="20"
@@ -107,8 +93,8 @@
                                                 <TextBlock>
                                                     <TextBlock.Text>
                                                         <MultiBinding StringFormat="{}{0} {1}">
-                                                            <Binding Source="Компания:"/>
-                                                            <Binding Path="Company.Title"/>
+                                                            <Binding Source="Водитель:"/>
+                                                            <Binding Path="Driver.FIO"/>
                                                         </MultiBinding>
                                                     </TextBlock.Text>
                                                 </TextBlock>
@@ -124,8 +110,44 @@
                                                 <TextBlock>
                                                     <TextBlock.Text>
                                                         <MultiBinding StringFormat="{}{0} {1}">
-                                                            <Binding Source="Телефон:"/>
-                                                            <Binding Path="Phone"/>
+                                                            <Binding Source="Автомобиль:"/>
+                                                            <Binding Path="Vehicle.Number"/>
+                                                        </MultiBinding>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                            </Label.Content>
+                                        </Label>
+
+                                        <Label Grid.Row="1"
+                                               Style="{StaticResource defaultWindowHeaderLabel}"
+                                               FontStyle="Italic"
+                                               FontSize="20"
+                                               Foreground="{StaticResource foreSelectionBrush}">
+                                            <Label.Content>
+                                                <TextBlock>
+                                                    <TextBlock.Text>
+                                                        <MultiBinding StringFormat="{}{0} {1}">
+                                                            <Binding Source="Дата:"/>
+                                                            <Binding Path="FormattedDate"/>
+                                                        </MultiBinding>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                            </Label.Content>
+                                        </Label>
+
+                                        <Label Grid.Row="1"
+                                               Style="{StaticResource defaultWindowHeaderLabel}"
+                                               FontStyle="Italic"
+                                               HorizontalAlignment="Left"
+                                               MaxWidth="500"
+                                               FontSize="20"
+                                               Foreground="{StaticResource foreSelectionBrush}">
+                                            <Label.Content>
+                                                <TextBlock TextWrapping="Wrap">
+                                                    <TextBlock.Text>
+                                                        <MultiBinding StringFormat="{}{0} {1}">
+                                                            <Binding Source="Компании:"/>
+                                                            <Binding Path="CompanyNames"/>
                                                         </MultiBinding>
                                                     </TextBlock.Text>
                                                 </TextBlock>
@@ -142,15 +164,69 @@
 
         <Grid Grid.Row="0"
               Background="{StaticResource addBackBrush}"
-              Height="75">
-            <StackPanel Margin="10 0 10 0"
-                        HorizontalAlignment="Left">
-                <Label Content="Поиск по ФИО/телефону/компании:"/>
+              Height="auto">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
-                <TextBox Width="500"
+            <Grid Grid.Row="0">
+                <StackPanel Margin="10 0"
+                        HorizontalAlignment="Left">
+                    <Label Content="Поиск по сотруднику/авто/компании:"/>
+
+                    <TextBox Width="400"
                          Name="textBoxSearh"
-                         MaxLength="20"/>
-            </StackPanel>
+                         HorizontalAlignment="Left"
+                         TextChanged="UpdateListOnSearch"
+                         MaxLength="50"/>
+                </StackPanel>
+
+                <StackPanel Margin="10 0 10 3"
+                        HorizontalAlignment="Right">
+                    <Label Content="Фильтр по датам:"/>
+
+                    <ComboBox HorizontalAlignment="Left"
+                              Width="255"
+                              SelectedIndex="0"
+                              Name="comboBoxDateFilter"
+                              SelectionChanged="UpdateListOnFilterChange">
+                        <ComboBoxItem Content="Текущий месяц"/>
+                        <ComboBoxItem Content="Без фильтра"/>
+                        <ComboBoxItem Content="Диапазон..."/>
+                    </ComboBox>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="1"
+                  Margin="10 -3 0 3"
+                  d:Visibility="Visible">
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding
+                                            ElementName=comboBoxDateFilter,
+                                            Path=SelectedIndex}"
+                                         Value="2">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Grid.Column="0">
+                    <Label Content="От:"/>
+                    <DatePicker Name="datePickerStart"
+                                SelectedDateChanged="UpdateListOnFilterChange"/>
+                    <Label Content="—"/>
+                    <Label Content="До:"/>
+                    <DatePicker Name="datePickerEnd"
+                                SelectedDateChanged="UpdateListOnFilterChange"/>
+                </StackPanel>
+            </Grid>
         </Grid>
 
         <Grid Grid.Row="2"
@@ -162,7 +238,8 @@
                     Content="Добавить"
                     Name="addButton"
                     Style="{StaticResource defaultButton}"
-                    ToolTip="Добавить нового водителя"/>
+                    ToolTip="Добавить маршрутный лист"
+                    Click="AddRouteList"/>
         </Grid>
     </Grid>
 </Page>

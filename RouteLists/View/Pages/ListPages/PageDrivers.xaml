@@ -79,6 +79,17 @@
                                             </TextBlock>
                                         </Label.Content>
                                     </Label>
+
+                                    <Button Name="reportButton"
+                                            Background="Transparent"
+                                            BorderBrush="Transparent"
+                                            ToolTip="Отчёт о доставках"
+                                            Width="125"
+                                            Click="ShowDriverReport"
+                                            Content="Отчёт"
+                                            HorizontalAlignment="Right"
+                                            Margin="10 5"
+                                            Style="{StaticResource defaultButton}"/>
                                 </Grid>
 
                                 <Grid Grid.Row="1">
@@ -189,8 +200,9 @@
                         HorizontalAlignment="Left">
                 <Label Content="Поиск по ФИО/Автомобильному номеру:"/>
 
-                <TextBox Width="500"
+                <TextBox Width="400"
                          Name="textBoxSearh"
+                         HorizontalAlignment="Left"
                          TextChanged="ListUpdateOnSearh"
                          MaxLength="20"/>
             </StackPanel>
@@ -205,7 +217,8 @@
                     Content="Добавить"
                     Name="addButton"
                     Style="{StaticResource defaultButton}"
-                    ToolTip="Добавить нового водителя" Click="AddDriver"/>
+                    ToolTip="Добавить водителя"
+                    Click="AddDriver"/>
         </Grid>
     </Grid>
 </Page>

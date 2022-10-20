@@ -9,7 +9,7 @@
         ResizeMode="NoResize"
         Height="auto"
         Width="auto"
-        WindowStartupLocation="CenterScreen"
+        WindowStartupLocation="CenterOwner"
         SnapsToDevicePixels="True"
         Topmost="True">
 
@@ -35,6 +35,7 @@
                     HorizontalAlignment="Left"
                     Style="{StaticResource defaultButton}"
                     Margin="10 5"
+                    Name="buttonSave"
                     Content="Сохранить"
                     Click="SaveEntity"/>
 

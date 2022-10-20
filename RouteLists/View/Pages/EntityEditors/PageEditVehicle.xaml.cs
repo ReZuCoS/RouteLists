@@ -44,10 +44,13 @@ namespace RouteLists.View.Pages.EntityEditors
 
             if (result == MessageBoxResult.Yes)
             {
-                List<VehiclePass> vehiclePasses = DatabaseContext.Database.VehiclePasses.ToList().Where(vp => vp.VehicleID == _vehicle.ID).ToList();
+                List<VehiclePass> vehiclePasses = DatabaseContext.Database.VehiclePasses.ToList().Where(vp => vp.Vehicle == _vehicle).ToList();
                 DatabaseContext.Database.VehiclePasses.RemoveRange(vehiclePasses);
 
-                List<RouteList> routeLists = DatabaseContext.Database.RouteLists.ToList().Where(rl => rl.VehicleID == _vehicle.ID).ToList();
+                List<RoutePoint> routePoints = DatabaseContext.Database.RoutePoints.ToList().Where(rp => rp.RouteList.Vehicle == _vehicle).ToList();
+                DatabaseContext.Database.RoutePoints.RemoveRange(routePoints);
+
+                List<RouteList> routeLists = DatabaseContext.Database.RouteLists.ToList().Where(rl => rl.Vehicle == _vehicle).ToList();
                 DatabaseContext.Database.RouteLists.RemoveRange(routeLists);
 
                 DatabaseContext.Database.Vehicles.Remove(_vehicle);

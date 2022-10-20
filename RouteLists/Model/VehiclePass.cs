@@ -6,15 +6,6 @@ namespace RouteLists.Model
 {
     public partial class VehiclePass
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int VehicleID { get; set; }
-
-        public int PassTypeID { get; set; }
-
-        [Column(TypeName = "date")]
-        public DateTime ExpireDate { get; set; }
-
         public enum PassExpireType
         {
             Valid = 0,
@@ -22,8 +13,6 @@ namespace RouteLists.Model
             Expired = 2
         }
 
-        public PassExpireType ExpireType { get => IsExpiredOrStartsExpire(ExpireDate); }
-        
         private static PassExpireType IsExpiredOrStartsExpire(DateTime date)
         {
             DateTime currentDate = DateTime.Now;
@@ -33,13 +22,24 @@ namespace RouteLists.Model
                 return PassExpireType.Expired;
             }
 
-            if((date - currentDate).TotalDays < 30)
+            if ((date - currentDate).TotalDays < 30)
             {
                 return PassExpireType.StartsExpire;
             }
 
             return PassExpireType.Valid;
         }
+
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int VehicleID { get; set; }
+
+        public int PassTypeID { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime ExpireDate { get; set; }
+
+        public PassExpireType ExpireType { get => IsExpiredOrStartsExpire(ExpireDate); }
 
         public string FormattedExpiredDate { get => ExpireDate.ToString("dd/MM/yyyy"); }
 

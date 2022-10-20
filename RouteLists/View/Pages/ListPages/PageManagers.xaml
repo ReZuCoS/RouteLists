@@ -26,6 +26,7 @@
                                 <Setter Property="IsSelected" Value="True"/>
                             </Trigger>
                         </Style.Triggers>
+                        <EventSetter Event="MouseDoubleClick" Handler="EditSelectedManager"/>
                         <Setter Property="Background" Value="Transparent" />
                         <Setter Property="Template">
                             <Setter.Value>
@@ -77,7 +78,7 @@
                                                             </Setter.Value>
                                                         </Setter>
                                                         <Style.Triggers>
-                                                            <DataTrigger Binding="{Binding Surname}" Value="{x:Null}">
+                                                            <DataTrigger Binding="{Binding Surname}" Value="">
                                                                 <Setter Property="Text">
                                                                     <Setter.Value>
                                                                         <MultiBinding StringFormat="{}{0} {1}">
@@ -146,8 +147,9 @@
                         HorizontalAlignment="Left">
                 <Label Content="Поиск по ФИО/телефону/компании:"/>
 
-                <TextBox Width="500"
+                <TextBox Width="400"
                          Name="textBoxSearh"
+                         HorizontalAlignment="Left"
                          TextChanged="UpdateListOnSearch"
                          MaxLength="20"/>
             </StackPanel>
@@ -162,7 +164,8 @@
                     Content="Добавить"
                     Name="addButton"
                     Style="{StaticResource defaultButton}"
-                    ToolTip="Добавить нового водителя"/>
+                    ToolTip="Добавить менеджера"
+                    Click="AddManager"/>
         </Grid>
     </Grid>
 </Page>

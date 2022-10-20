@@ -13,7 +13,6 @@ namespace RouteLists.Model
         public virtual DbSet<Driver> Drivers { get; set; }
         public virtual DbSet<Manager> Managers { get; set; }
         public virtual DbSet<PassType> PassTypes { get; set; }
-        public virtual DbSet<PointsAction> PointsActions { get; set; }
         public virtual DbSet<RouteList> RouteLists { get; set; }
         public virtual DbSet<RoutePoint> RoutePoints { get; set; }
         public virtual DbSet<VehiclePass> VehiclePasses { get; set; }
@@ -41,15 +40,11 @@ namespace RouteLists.Model
                 .WithRequired(e => e.PassType)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<PointsAction>()
-                .HasMany(e => e.RoutePoints)
-                .WithRequired(e => e.PointsAction)
-                .HasForeignKey(e => e.ActionID)
-                .WillCascadeOnDelete(false);
-
             modelBuilder.Entity<RouteList>()
-                .HasOptional(e => e.RoutePoint)
-                .WithRequired(e => e.RouteList);
+                .HasMany(e => e.RoutePoints)
+                .WithRequired(e => e.RouteList)
+                .HasForeignKey(e => e.RouteID)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<RoutePoint>()
                 .Property(e => e.Cost)

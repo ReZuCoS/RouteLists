@@ -13,6 +13,9 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
@@ -22,38 +25,131 @@
             </Grid.ColumnDefinitions>
 
             <Label Grid.Column="0"
-                   Content="Марка авто:"
+                   Grid.Row="0"
+                   Content="Фамилия:"
                    Margin="10 5"/>
 
-            <TextBox Name="txtBoxBrand"
+            <TextBox Name="txtBoxSurname"
                      Width="auto"
+                     Grid.Row="0"
                      Grid.Column="2"
                      Margin="10 5"
-                     MaxLength="150"/>
+                     MaxLength="75">
+                <TextBox.Style>
+                    <Style TargetType="TextBox"
+                           BasedOn="{StaticResource {x:Type TextBox}}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding
+                                            ElementName=txtBoxSurname,
+                                            Path=Text,
+                                            Converter={StaticResource
+                                            OnlyLettersConverter}}"
+                                         Value="True">
+                                <Setter Property="BorderBrush" Value="{StaticResource passExpiredBrush}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
 
             <Label Grid.Column="0"
                    Grid.Row="1"
-                   Content="Гос. номер:"
+                   Content="Имя:"
                    Margin="10 5"/>
 
             <TextBox Width="auto"
-                     Name="txtBoxNumber"
+                     Name="txtBoxName"
                      Grid.Row="1"
                      Grid.Column="2"
                      Margin="10 5"
-                     MaxLength="15"/>
+                     MaxLength="75">
+                <TextBox.Style>
+                    <Style TargetType="TextBox"
+                           BasedOn="{StaticResource {x:Type TextBox}}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding
+                                            ElementName=txtBoxName,
+                                            Path=Text,
+                                            Converter={StaticResource
+                                            OnlyLettersConverter}}"
+                                         Value="True">
+                                <Setter Property="BorderBrush" Value="{StaticResource passExpiredBrush}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
 
             <Label Grid.Column="0"
                    Grid.Row="2"
-                   Content="Тоннаж (кг):"
+                   Content="Отчество:"
                    Margin="10 5"/>
 
             <TextBox Width="auto"
                      Grid.Row="2"
-                     Name="txtBoxTonnage"
+                     Name="txtBoxPatronymic"
                      Grid.Column="2"
                      Margin="10 5"
-                     MaxLength="10"/>
+                     MaxLength="75">
+                <TextBox.Style>
+                    <Style TargetType="TextBox"
+                           BasedOn="{StaticResource {x:Type TextBox}}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding
+                                            ElementName=txtBoxPatronymic,
+                                            Path=Text,
+                                            Converter={StaticResource
+                                            OnlyLettersConverter}}"
+                                         Value="True">
+                                <Setter Property="BorderBrush" Value="{StaticResource passExpiredBrush}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+
+            <Label Grid.Column="0"
+                   Grid.Row="4"
+                   Content="Номер телефона:"
+                   Margin="10 5"/>
+
+            <TextBox Width="auto"
+                     Grid.Row="4"
+                     Grid.Column="2"
+                     Name="txtBoxPhone"
+                     Margin="10 5"
+                     MaxLength="20">
+                <TextBox.Style>
+                    <Style TargetType="TextBox"
+                           BasedOn="{StaticResource {x:Type TextBox}}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding
+                                            ElementName=txtBoxPhone,
+                                            Path=Text,
+                                            Converter={StaticResource
+                                            PhoneNumberConverter}}"
+                                         Value="True">
+                                <Setter Property="BorderBrush" Value="{StaticResource passExpiredBrush}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+
+            <Label Grid.Column="0"
+                   Grid.Row="5"
+                   Content="Компания:"
+                   Margin="10 5"/>
+
+            <ComboBox Width="auto"
+                      IsEditable="True"
+                      Grid.Row="5"
+                      IsTextSearchCaseSensitive="False"
+                      Name="cBoxCompany"
+                      Height="37"
+                      DisplayMemberPath="Title"
+                      Grid.Column="2"
+                      Margin="10 5"/>
         </Grid>
     </StackPanel>
 </local:EntityPage>

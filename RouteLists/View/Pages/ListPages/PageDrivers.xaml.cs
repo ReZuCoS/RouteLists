@@ -23,6 +23,29 @@ namespace RouteLists.View.Pages.ListPages
             UpdateList();
         }
 
+        public void UpdateList()
+        {
+            _drivers = DatabaseContext.Database.Drivers.ToList();
+
+            if (textBoxSearh.Text.Any(char.IsDigit) || textBoxSearh.Text.Any(char.IsSeparator))
+            {
+                _drivers = _drivers.Where(d => d.HasVehicle == true).ToList()
+                    .Where(d => d.Vehicle.Number.ToLower()
+                    .Replace(" ", String.Empty)
+                    .Contains(textBoxSearh.Text.ToLower()
+                    .Replace(" ", String.Empty))).ToList();
+            }
+            else
+            {
+                _drivers = _drivers.Where(d =>
+                    d.FIO.ToLower()
+                    .Contains(textBoxSearh.Text.ToLower())
+                    ).ToList();
+            }
+
+            listViewMain.ItemsSource = _drivers;
+        }
+
         private void EditSelectedDriver(object sender, MouseButtonEventArgs e)
         {
             Driver selectedDriver = (Driver)listViewMain.SelectedItem;
@@ -47,29 +70,6 @@ namespace RouteLists.View.Pages.ListPages
             {
                 UpdateList();
             }
-        }
-
-        private void UpdateList()
-        {
-            _drivers = DatabaseContext.Database.Drivers.ToList();
-
-            if (textBoxSearh.Text.Any(char.IsDigit) || textBoxSearh.Text.Any(char.IsSeparator))
-            {
-                _drivers = _drivers.Where(d => d.HasVehicle == true).ToList()
-                    .Where(d => d.Vehicle.Number.ToLower()
-                    .Replace(" ", String.Empty)
-                    .Contains(textBoxSearh.Text.ToLower()
-                    .Replace(" ", String.Empty))).ToList();
-            }
-            else
-            {
-                _drivers = _drivers.Where(d =>
-                    d.FIO.ToLower()
-                    .Contains(textBoxSearh.Text.ToLower())
-                    ).ToList();
-            }
-
-            listViewMain.ItemsSource = _drivers;
         }
 
         private void ListUpdateOnSearh(object sender, TextChangedEventArgs e)
@@ -98,6 +98,21 @@ namespace RouteLists.View.Pages.ListPages
         private void ClearFocus(object sender, MouseButtonEventArgs e)
         {
             Keyboard.ClearFocus();
+        }
+
+        //TODO Сделать отчёт по водителям
+        private void ShowDriverReport(object sender, RoutedEventArgs e)
+        {
+            Driver selectedDriver = (Driver)listViewMain.SelectedItem;
+
+            WindowEntityEditor windowEditor = new WindowEntityEditor(new PageEditDriver(selectedDriver), true, true);
+
+            bool isListUpdated = (bool)windowEditor.ShowDialog();
+
+            if (isListUpdated)
+            {
+                UpdateList();
+            }
         }
     }
 }

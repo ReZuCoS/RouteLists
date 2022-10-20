@@ -4,15 +4,15 @@ namespace RouteLists.Model
 {
     public partial class RoutePoint
     {
-        [Key]
-        [StringLength(25)]
-        public string RouteID { get; set; }
+        public int ID { get; set; }
+
+        public int RouteID { get; set; }
 
         [Required]
         [StringLength(500)]
         public string Address { get; set; }
 
-        public int ActionID { get; set; }
+        public string Action { get; set; }
 
         public int ManagerID { get; set; }
 
@@ -25,9 +25,9 @@ namespace RouteLists.Model
         [StringLength(500)]
         public string Comment { get; set; }
 
-        public virtual Manager Manager { get; set; }
+        public int PointNumber { get; set; }
 
-        public virtual PointsAction PointsAction { get; set; }
+        public virtual Manager Manager { get; set; }
 
         public virtual RouteList RouteList { get; set; }
     }

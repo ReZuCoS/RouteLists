@@ -76,7 +76,7 @@
                                       Margin="5">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="120"/>
-                                        <ColumnDefinition Width="65"/>
+                                        <ColumnDefinition Width="70"/>
                                     </Grid.ColumnDefinitions>
 
                                     <Border Background="White"
@@ -91,7 +91,7 @@
                                             <Label Content="{Binding NumberParts[0]}"
                                                    HorizontalAlignment="Center"
                                                    VerticalAlignment="Bottom"
-                                                   Margin="0 0 0 -6"/>
+                                                   Margin="0 0 0 -4"/>
 
                                             <Label Content="{Binding NumberParts[1]}"
                                                    HorizontalAlignment="Center"
@@ -102,7 +102,7 @@
                                             <Label Content="{Binding NumberParts[2]}"
                                                    HorizontalAlignment="Center"
                                                    VerticalAlignment="Bottom"
-                                                   Margin="0 0 0 -6"/>
+                                                   Margin="0 0 0 -4"/>
                                         </StackPanel>
                                     </Border>
 
@@ -256,6 +256,7 @@
 
                 <TextBox Width="270"
                          Name="textBoxSearh"
+                         HorizontalAlignment="Left"
                          TextChanged="ListUpdateOnSearh"
                          MaxLength="20"/>
             </StackPanel>
@@ -286,9 +287,8 @@
                     Content="Добавить"
                     Name="addButton"
                     Style="{StaticResource defaultButton}"
-                    ToolTipService.InitialShowDelay="300"
-                    ToolTipService.Placement="Top"
-                    ToolTip="Добавить автомобиль" Click="AddVehicle"/>
+                    ToolTip="Добавить автомобиль"
+                    Click="AddVehicle"/>
         </Grid>
     </Grid>
 </Page>

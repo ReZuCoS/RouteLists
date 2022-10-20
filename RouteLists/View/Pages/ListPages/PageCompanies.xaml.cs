@@ -4,6 +4,7 @@ using RouteLists.View.Windows;
 using RouteLists.ViewModel;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -17,6 +18,17 @@ namespace RouteLists.View.Pages.ListPages
         {
             InitializeComponent();
             UpdateList();
+        }
+
+        public void UpdateList()
+        {
+            _companies = DatabaseContext.Database.Companies.ToList();
+
+            _companies = _companies.Where(c => c.Title.ToLower()
+            .Contains(textBoxSearh.Text.ToLower())
+            ).ToList();
+
+            listViewMain.ItemsSource = _companies;
         }
 
         private void EditSelectedDriver(object sender, MouseButtonEventArgs e)
@@ -33,7 +45,7 @@ namespace RouteLists.View.Pages.ListPages
             }
         }
 
-        private void AddCompany(object sender, System.Windows.RoutedEventArgs e)
+        private void AddCompany(object sender, RoutedEventArgs e)
         {
             WindowEntityEditor windowEditor = new WindowEntityEditor(new PageEditCompany(), false);
 
@@ -48,17 +60,6 @@ namespace RouteLists.View.Pages.ListPages
         private void UpdateListOnSearch(object sender, TextChangedEventArgs e)
         {
             UpdateList();
-        }
-
-        private void UpdateList()
-        {
-            _companies = DatabaseContext.Database.Companies.ToList();
-
-            _companies = _companies.Where(c => c.Title.ToLower()
-            .Contains(textBoxSearh.Text.ToLower())
-            ).ToList();
-
-            listViewMain.ItemsSource = _companies;
         }
     }
 }
