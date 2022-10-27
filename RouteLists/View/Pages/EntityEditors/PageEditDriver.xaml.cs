@@ -85,7 +85,7 @@ namespace RouteLists.View.Pages.EntityEditors
         private bool EntityValidated()
         {
             if (txtBoxSurname.Text.Replace(" ", "") == "" ||
-                txtBoxName.Text.Replace(" ", "") == "")
+            txtBoxName.Text.Replace(" ", "") == "")
             {
                 MessageBox.Show("Введите фамилию, имя!",
                     "Ошибка ввода данных", MessageBoxButton.OK, MessageBoxImage.Error);
