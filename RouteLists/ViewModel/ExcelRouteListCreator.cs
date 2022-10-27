@@ -110,6 +110,10 @@ namespace RouteLists.ViewModel
                 $"{routeList.Driver.Surname} {routeList.Driver.Name[0]}" :
                 $"{routeList.Driver.Surname} {routeList.Driver.Name[0]}.{routeList.Driver.Patronymic[0]}";
 
+            string userFio = AppSettings.UserPatronymic == "" ?
+                $"{AppSettings.UserSurname} {AppSettings.UserName[0]}" :
+                $"{AppSettings.UserSurname} {AppSettings.UserName[0]}.{AppSettings.UserPatronymic[0]}";
+
             sheet.Range[$"A{routePointsCount + 7}:D{routePointsCount + 7}"].Merge();
             sheet.Range[$"A{routePointsCount + 7}"].Text = $"Маршрутный лист выдан \"___\" ________ {DateTime.Now.Year} г. в __ ч __ мин";
 
@@ -117,11 +121,10 @@ namespace RouteLists.ViewModel
             sheet.Range[$"E{routePointsCount + 7}:H{routePointsCount + 7}"].Merge();
             sheet.Range[$"E{routePointsCount + 7}"].Text = $"Маршрутный лист получен \"___\" ________ {DateTime.Now.Year} г. в __ ч __ мин";
 
-
             sheet.Range[$"B{routePointsCount + 9}"].Text = "____________/";
             sheet.Range[$"B{routePointsCount + 9}"].HorizontalAlignment = HorizontalAlignType.Right;
             
-            sheet.Range[$"C{routePointsCount + 9}"].Text = "Иманов К.Э, Генеральный директор";
+            sheet.Range[$"C{routePointsCount + 9}"].Text = $"{userFio}, {AppSettings.UserPosition}";
             sheet.Range[$"C{routePointsCount + 9}"].HorizontalAlignment = HorizontalAlignType.Left;
 
             sheet.Range[$"B{routePointsCount + 10}"].Text = "(подпись)";
@@ -166,7 +169,7 @@ namespace RouteLists.ViewModel
             sheet.Range[$"E{routePointsCount + 14}"].Text = "____________/";
             sheet.Range[$"E{routePointsCount + 14}"].HorizontalAlignment = HorizontalAlignType.Right;
 
-            sheet.Range[$"F{routePointsCount + 14}"].Text = "Иманов К.Э, Генеральный директор";
+            sheet.Range[$"F{routePointsCount + 14}"].Text = $"{userFio}, {AppSettings.UserPosition}";
             sheet.Range[$"F{routePointsCount + 14}"].HorizontalAlignment = HorizontalAlignType.Left;
 
             sheet.Range[$"E{routePointsCount + 15}"].Text = "(подпись)";

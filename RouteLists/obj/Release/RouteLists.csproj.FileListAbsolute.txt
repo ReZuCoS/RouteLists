@@ -68,3 +68,5 @@ C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Release\View\Pages\
 C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Release\View\Pages\ListPages\PageRouteLists.baml
 C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Release\View\Pages\ReportPages\DriverReportPage.baml
 C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Release\View\Windows\WindowEntityEditor.baml
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Release\View\Windows\WindowSettings.g.cs
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Release\View\Windows\WindowSettings.baml
