@@ -1,5 +1,5 @@
-﻿using System;
-using System.Configuration;
+﻿using RouteLists.ViewModel;
+using System;
 using System.ServiceProcess;
 using System.Threading.Tasks;
 using System.Windows;
@@ -8,44 +8,43 @@ namespace RouteLists.Services
 {
     public static class SQLServiceController
     {
-        private static ServiceController _service =>
-            new ServiceController(ConfigurationManager.AppSettings["ServiceName"]);
+        public static ServiceControllerStatus Status =>
+            Service.Status;
 
-        public static ServiceControllerStatus Status() =>
-            _service.Status;
+        public static bool IsRunning =>
+            Status == ServiceControllerStatus.Running;
+
+        private static ServiceController Service =>
+            new ServiceController(AppSettings.ServiceName);
+
         public static void Start()
         {
             try
             {
-                if (_service.Status != ServiceControllerStatus.Running)
-                {
-                    _service.Start();
-                }
+                if (Service.Status != ServiceControllerStatus.Running)
+                    Service.Start();
 
-                while (_service.Status != ServiceControllerStatus.Running)
-                {
+                while (Service.Status != ServiceControllerStatus.Running)
                     Task.Delay(10);
-                }
             }
             catch (InvalidOperationException ex)
             {
-                MessageBox.Show(ex.InnerException.Message, ex.GetType().ToString(), MessageBoxButton.OK);
+                MessageBox.Show(ex.InnerException.Message, ex.GetType().ToString(),
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+                Environment.Exit(0);
                 return;
             }
         }
+
         public static void Stop()
         {
             try
             {
-                if (_service.Status == ServiceControllerStatus.Running)
-                {
-                    _service.Stop();
-                }
+                if (Service.Status == ServiceControllerStatus.Running)
+                    Service.Stop();
 
-                while (_service.Status != ServiceControllerStatus.Stopped)
-                {
+                while (Service.Status != ServiceControllerStatus.Stopped)
                     Task.Delay(10);
-                }
             }
             catch (InvalidOperationException)
             {

@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:RouteLists.View.Pages.ListPages"
       mc:Ignorable="d" 
       d:DesignHeight="450"
-      d:DesignWidth="800">
+      d:DesignWidth="800"
+      MouseDown="ClearFocus">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -16,20 +17,24 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="1">
-            <ListView Name="listViewMain"
+            <ListView d:ItemsSource="{d:SampleData ItemCount=2}"
+                      x:Name="listViewMain"
                       Background="{StaticResource mainBackBrush}"
-                      ScrollViewer.CanContentScroll="False"
                       HorizontalAlignment="Stretch"
-                      d:ItemsSource="{d:SampleData ItemCount=2}">
+                      ScrollViewer.CanContentScroll="False">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="{x:Type ListViewItem}">
                         <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="IsSelected" Value="True"/>
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Setter Property="IsSelected"
+                                        Value="True"/>
                             </Trigger>
                         </Style.Triggers>
-                        <EventSetter Event="MouseDoubleClick" Handler="EditSelectedRouteList"/>
-                        <Setter Property="Background" Value="Transparent"/>
+                        <EventSetter Event="MouseDoubleClick"
+                                     Handler="EditSelectedRouteList"/>
+                        <Setter Property="Background"
+                                Value="Transparent"/>
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type ListViewItem}">
@@ -43,16 +48,21 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Border BorderThickness="2"
-                                Margin="5"
-                                CornerRadius="5">
+                                CornerRadius="5"
+                                Margin="5">
                             <Border.Style>
                                 <Style TargetType="{x:Type Border}">
-                                    <Setter Property="BorderBrush" Value="{StaticResource unactiveBrush}"/>
-                                    <Setter Property="Background" Value="{StaticResource mainBackBrush}"/>
+                                    <Setter Property="BorderBrush"
+                                            Value="{StaticResource unactiveBrush}"/>
+                                    <Setter Property="Background"
+                                            Value="{StaticResource mainBackBrush}"/>
                                     <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="BorderBrush" Value="{StaticResource foreSelectionBrush}"/>
-                                            <Setter Property="Background" Value="{StaticResource addBackBrush}"/>
+                                        <Trigger Property="IsMouseOver"
+                                                 Value="True">
+                                            <Setter Property="BorderBrush"
+                                                    Value="{StaticResource foreSelectionBrush}"/>
+                                            <Setter Property="Background"
+                                                    Value="{StaticResource addBackBrush}"/>
                                         </Trigger>
                                     </Style.Triggers>
                                 </Style>
@@ -65,30 +75,30 @@
                                 </Grid.RowDefinitions>
 
                                 <Grid Grid.Row="0">
-                                    <Label Style="{StaticResource headerLabel}"
-                                           Content="{Binding ListNumber}"
+                                    <Label Content="{Binding ListNumber}"
+                                           Style="{StaticResource headerLabel}"
                                            VerticalAlignment="Center"/>
 
-                                    <Button Name="exportButton"
+                                    <Button x:Name="exportButton"
                                             Background="Transparent"
                                             BorderBrush="Transparent"
-                                            ToolTip="Экспорт"
-                                            Width="125"
                                             Click="ExportSelectedRouteList"
                                             Content="Экспорт"
                                             HorizontalAlignment="Right"
                                             Margin="10 5"
-                                            Style="{StaticResource defaultButton}"/>
+                                            ToolTip="Экспорт"
+                                            Style="{StaticResource defaultButton}"
+                                            Width="125"/>
                                 </Grid>
 
                                 <Grid Grid.Row="1">
-                                    <StackPanel Orientation="Vertical"
-                                                Grid.Column="0"
-                                                HorizontalAlignment="Left">
-                                        <Label Style="{StaticResource defaultWindowHeaderLabel}"
+                                    <StackPanel Grid.Column="0"
+                                                HorizontalAlignment="Left"
+                                                Orientation="Vertical">
+                                        <Label FontSize="20"
                                                FontStyle="Italic"
-                                               FontSize="20"
-                                               Foreground="{StaticResource foreSelectionBrush}">
+                                               Foreground="{StaticResource foreSelectionBrush}"
+                                               Style="{StaticResource defaultWindowHeaderLabel}">
                                             <Label.Content>
                                                 <TextBlock>
                                                     <TextBlock.Text>
@@ -101,11 +111,11 @@
                                             </Label.Content>
                                         </Label>
 
-                                        <Label Grid.Row="1"
-                                               Style="{StaticResource defaultWindowHeaderLabel}"
+                                        <Label FontSize="20"
                                                FontStyle="Italic"
-                                               FontSize="20"
-                                               Foreground="{StaticResource foreSelectionBrush}">
+                                               Foreground="{StaticResource foreSelectionBrush}"
+                                               Grid.Row="1"
+                                               Style="{StaticResource defaultWindowHeaderLabel}">
                                             <Label.Content>
                                                 <TextBlock>
                                                     <TextBlock.Text>
@@ -118,11 +128,11 @@
                                             </Label.Content>
                                         </Label>
 
-                                        <Label Grid.Row="1"
-                                               Style="{StaticResource defaultWindowHeaderLabel}"
+                                        <Label FontSize="20"
                                                FontStyle="Italic"
-                                               FontSize="20"
-                                               Foreground="{StaticResource foreSelectionBrush}">
+                                               Foreground="{StaticResource foreSelectionBrush}"
+                                               Grid.Row="1"
+                                               Style="{StaticResource defaultWindowHeaderLabel}">
                                             <Label.Content>
                                                 <TextBlock>
                                                     <TextBlock.Text>
@@ -135,13 +145,13 @@
                                             </Label.Content>
                                         </Label>
 
-                                        <Label Grid.Row="1"
-                                               Style="{StaticResource defaultWindowHeaderLabel}"
+                                        <Label FontSize="20"
                                                FontStyle="Italic"
+                                               Foreground="{StaticResource foreSelectionBrush}"
+                                               Grid.Row="1"
                                                HorizontalAlignment="Left"
                                                MaxWidth="500"
-                                               FontSize="20"
-                                               Foreground="{StaticResource foreSelectionBrush}">
+                                               Style="{StaticResource defaultWindowHeaderLabel}">
                                             <Label.Content>
                                                 <TextBlock TextWrapping="Wrap">
                                                     <TextBlock.Text>
@@ -162,8 +172,8 @@
             </ListView>
         </Grid>
 
-        <Grid Grid.Row="0"
-              Background="{StaticResource addBackBrush}"
+        <Grid Background="{StaticResource addBackBrush}"
+              Grid.Row="0"
               Height="auto">
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -171,26 +181,26 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
-                <StackPanel Margin="10 0"
-                        HorizontalAlignment="Left">
+                <StackPanel HorizontalAlignment="Left"
+                            Margin="10 0">
                     <Label Content="Поиск по сотруднику/авто/компании:"/>
 
-                    <TextBox Width="400"
-                         Name="textBoxSearh"
-                         HorizontalAlignment="Left"
-                         TextChanged="UpdateListOnSearch"
-                         MaxLength="50"/>
+                    <TextBox x:Name="textBoxSearh"
+                             HorizontalAlignment="Left"
+                             MaxLength="50"
+                             TextChanged="UpdateListOnSearch"
+                             Width="400"/>
                 </StackPanel>
 
-                <StackPanel Margin="10 0 10 3"
-                        HorizontalAlignment="Right">
+                <StackPanel HorizontalAlignment="Right"
+                            Margin="10 0 10 3">
                     <Label Content="Фильтр по датам:"/>
 
-                    <ComboBox HorizontalAlignment="Left"
-                              Width="255"
+                    <ComboBox x:Name="comboBoxDateFilter"
+                              HorizontalAlignment="Left"
                               SelectedIndex="0"
-                              Name="comboBoxDateFilter"
-                              SelectionChanged="UpdateListOnFilterChange">
+                              SelectionChanged="UpdateListOnFilterChange"
+                              Width="255">
                         <ComboBoxItem Content="Текущий месяц"/>
                         <ComboBoxItem Content="Без фильтра"/>
                         <ComboBoxItem Content="Диапазон..."/>
@@ -198,48 +208,50 @@
                 </StackPanel>
             </Grid>
 
-            <Grid Grid.Row="1"
-                  Margin="10 -3 0 3"
-                  d:Visibility="Visible">
+            <Grid d:Visibility="Visible"
+                  Grid.Row="1"
+                  Margin="10 -3 0 3">
                 <Grid.Style>
                     <Style TargetType="Grid">
-                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Setter Property="Visibility"
+                                Value="Collapsed"/>
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding
                                             ElementName=comboBoxDateFilter,
                                             Path=SelectedIndex}"
                                          Value="2">
-                                <Setter Property="Visibility" Value="Visible"/>
+                                <Setter Property="Visibility"
+                                        Value="Visible"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </Grid.Style>
 
-                <StackPanel Orientation="Horizontal"
+                <StackPanel Grid.Column="0"
                             HorizontalAlignment="Center"
-                            Grid.Column="0">
+                            Orientation="Horizontal">
                     <Label Content="От:"/>
-                    <DatePicker Name="datePickerStart"
+                    <DatePicker x:Name="datePickerStart"
                                 SelectedDateChanged="UpdateListOnFilterChange"/>
                     <Label Content="—"/>
                     <Label Content="До:"/>
-                    <DatePicker Name="datePickerEnd"
+                    <DatePicker x:Name="datePickerEnd"
                                 SelectedDateChanged="UpdateListOnFilterChange"/>
                 </StackPanel>
             </Grid>
         </Grid>
 
-        <Grid Grid.Row="2"
-              Background="{StaticResource addBackBrush}">
-            <Button Grid.Column="0"
-                    Margin="10 5"
-                    Width="150"
-                    HorizontalAlignment="Left"
+        <Grid Background="{StaticResource addBackBrush}"
+              Grid.Row="2">
+            <Button x:Name="addButton"
+                    Click="AddRouteList"
                     Content="Добавить"
-                    Name="addButton"
+                    Grid.Column="0"
+                    HorizontalAlignment="Left"
+                    Margin="10 5"
                     Style="{StaticResource defaultButton}"
                     ToolTip="Добавить маршрутный лист"
-                    Click="AddRouteList"/>
+                    Width="150"/>
         </Grid>
     </Grid>
 </Page>

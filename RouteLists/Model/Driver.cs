@@ -7,12 +7,24 @@ namespace RouteLists.Model
 {
     public partial class Driver
     {
+        public static int GetAgeFromBithday(DateTime birthDate)
+        {
+            DateTime now = DateTime.Today;
+            int age = now.Year - birthDate.Year;
+            if (birthDate > now.AddYears(-age)) age--;
+
+            return age;
+        }
+
         public Driver()
         {
             RouteLists = new HashSet<RouteList>();
         }
 
         public int ID { get; set; }
+
+        public string FIO =>
+            string.Join(" ", Name, Patronymic, Surname);
 
         [Required]
         [StringLength(75)]
@@ -25,29 +37,20 @@ namespace RouteLists.Model
         [StringLength(75)]
         public string Patronymic { get; set; }
 
-        public string FIO { get => $"{Surname} {Name} {Patronymic}"; }
+        public int Age =>
+            GetAgeFromBithday(Bithday);
 
         [Column(TypeName = "date")]
         public DateTime Bithday { get; set; }
-
-        public int Age { get => GetAgeFromBithday(Bithday); }
-
-        public static int GetAgeFromBithday(DateTime birthDate)
-        {
-            DateTime now = DateTime.Today;
-            int age = now.Year - birthDate.Year;
-            if (birthDate > now.AddYears(-age)) age--;
-
-            return age;
-        }
 
         public int DrivingExperience { get; set; }
 
         public int? MainVehicle { get; set; }
 
-        public virtual Vehicle Vehicle { get; set; }
+        public bool HasVehicle =>
+            Vehicle != null;
 
-        public bool HasVehicle { get => Vehicle != null; }
+        public virtual Vehicle Vehicle { get; set; }
 
         public virtual ICollection<RouteList> RouteLists { get; set; }
     }

@@ -20,21 +20,6 @@ namespace RouteLists.Model
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Company>()
-                .HasMany(e => e.Managers)
-                .WithRequired(e => e.Company)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Driver>()
-                .HasMany(e => e.RouteLists)
-                .WithRequired(e => e.Driver)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Manager>()
-                .HasMany(e => e.RoutePoints)
-                .WithRequired(e => e.Manager)
-                .WillCascadeOnDelete(false);
-
             modelBuilder.Entity<PassType>()
                 .HasMany(e => e.VehiclePasses)
                 .WithRequired(e => e.PassType)
@@ -43,8 +28,7 @@ namespace RouteLists.Model
             modelBuilder.Entity<RouteList>()
                 .HasMany(e => e.RoutePoints)
                 .WithRequired(e => e.RouteList)
-                .HasForeignKey(e => e.RouteID)
-                .WillCascadeOnDelete(false);
+                .HasForeignKey(e => e.RouteID);
 
             modelBuilder.Entity<RoutePoint>()
                 .Property(e => e.Cost)
@@ -56,13 +40,9 @@ namespace RouteLists.Model
                 .HasForeignKey(e => e.MainVehicle);
 
             modelBuilder.Entity<Vehicle>()
-                .HasMany(e => e.RouteLists)
-                .WithRequired(e => e.Vehicle)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Vehicle>()
                 .HasOptional(e => e.VehiclePass)
-                .WithRequired(e => e.Vehicle);
+                .WithRequired(e => e.Vehicle)
+                .WillCascadeOnDelete();
         }
     }
 }

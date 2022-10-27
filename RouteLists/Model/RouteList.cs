@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace RouteLists.Model
 {
@@ -18,7 +19,6 @@ namespace RouteLists.Model
             get
             {
                 string vehicleType = Vehicle.Tonnage >= 1000 ? "ЛА" : "ГА";
-
                 return $"{vehicleType} {Vehicle.NumberParts[1]} №{ListNumberPerMonth}";
             }
         }
@@ -27,22 +27,15 @@ namespace RouteLists.Model
         {
             get
             {
-                if(RoutePoints.Count == 0)
+                if (RoutePoints.Count == 0)
                 {
                     return "-";
                 }
-
-                List<string> companyNames = new List<string>();
-
-                foreach (var routePoint in RoutePoints)
+                else
                 {
-                    if (!companyNames.Contains(routePoint.Manager.Company.Title))
-                    {
-                        companyNames.Add(routePoint.Manager.Company.Title);
-                    }
+                    string[] companyNames = RoutePoints.Select(rp => rp.Manager.Company.Title).Distinct().ToArray();
+                    return String.Join(", ", companyNames);
                 }
-
-                return String.Join(", ", companyNames.ToArray());
             }
         }
 
@@ -50,16 +43,11 @@ namespace RouteLists.Model
 
         public int VehicleID { get; set; }
 
+        public string FormattedDate =>
+            Date.ToString("dd/MM/yyyy");
+
         [Column(TypeName = "date")]
         public DateTime Date { get; set; }
-
-        public string FormattedDate
-        {
-            get
-            {
-                return Date.ToString("dd/MM/yyyy");
-            }
-        }
 
         public int ListNumberPerMonth { get; set; }
 

@@ -5,7 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:RouteLists.View.Pages.ListPages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800">
+      d:DesignHeight="450"
+      d:DesignWidth="800"
+      MouseDown="ClearFocus">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -15,19 +17,24 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="1">
-            <ListView Name="listViewMain"
+            <ListView d:ItemsSource="{d:SampleData ItemCount=5}"
+                      x:Name="listViewMain"
                       Background="{StaticResource mainBackBrush}"
                       ScrollViewer.CanContentScroll="False"
-                      HorizontalAlignment="Stretch" d:ItemsSource="{d:SampleData ItemCount=5}">
+                      HorizontalAlignment="Stretch">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="{x:Type ListViewItem}">
                         <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="IsSelected" Value="True"/>
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Setter Property="IsSelected"
+                                        Value="True"/>
                             </Trigger>
                         </Style.Triggers>
-                        <EventSetter Event="MouseDoubleClick" Handler="EditSelectedManager"/>
-                        <Setter Property="Background" Value="Transparent" />
+                        <EventSetter Event="MouseDoubleClick"
+                                     Handler="EditSelectedManager"/>
+                        <Setter Property="Background"
+                                Value="Transparent" />
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type ListViewItem}">
@@ -41,16 +48,21 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Border BorderThickness="2"
-                                Margin="5"
-                                CornerRadius="5">
+                                CornerRadius="5"
+                                Margin="5">
                             <Border.Style>
                                 <Style TargetType="{x:Type Border}">
-                                    <Setter Property="BorderBrush" Value="{StaticResource unactiveBrush}"/>
-                                    <Setter Property="Background" Value="{StaticResource mainBackBrush}"/>
+                                    <Setter Property="BorderBrush"
+                                            Value="{StaticResource unactiveBrush}"/>
+                                    <Setter Property="Background"
+                                            Value="{StaticResource mainBackBrush}"/>
                                     <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="BorderBrush" Value="{StaticResource foreSelectionBrush}"/>
-                                            <Setter Property="Background" Value="{StaticResource addBackBrush}"/>
+                                        <Trigger Property="IsMouseOver"
+                                                 Value="True">
+                                            <Setter Property="BorderBrush"
+                                                    Value="{StaticResource foreSelectionBrush}"/>
+                                            <Setter Property="Background"
+                                                    Value="{StaticResource addBackBrush}"/>
                                         </Trigger>
                                     </Style.Triggers>
                                 </Style>
@@ -71,14 +83,17 @@
                                                         <Setter Property="Text">
                                                             <Setter.Value>
                                                                 <MultiBinding StringFormat="{}{0} {1} {2}" >
-                                                                    <Binding Path="Surname" FallbackValue="{x:Null}"/>
+                                                                    <Binding Path="Surname"
+                                                                             FallbackValue="{x:Null}"/>
                                                                     <Binding Path="Name"/>
-                                                                    <Binding Path="Patronymic" FallbackValue="{x:Null}"/>
+                                                                    <Binding Path="Patronymic"
+                                                                             FallbackValue="{x:Null}"/>
                                                                 </MultiBinding>
                                                             </Setter.Value>
                                                         </Setter>
                                                         <Style.Triggers>
-                                                            <DataTrigger Binding="{Binding Surname}" Value="">
+                                                            <DataTrigger Binding="{Binding Surname}"
+                                                                         Value="">
                                                                 <Setter Property="Text">
                                                                     <Setter.Value>
                                                                         <MultiBinding StringFormat="{}{0} {1}">
@@ -97,12 +112,12 @@
                                 </Grid>
 
                                 <Grid Grid.Row="1">
-                                    <StackPanel Orientation="Vertical"
-                                                Grid.Column="0">
-                                        <Label Style="{StaticResource defaultWindowHeaderLabel}"
+                                    <StackPanel Grid.Column="0"
+                                                Orientation="Vertical">
+                                        <Label FontSize="20"
                                                FontStyle="Italic"
-                                               FontSize="20"
-                                               Foreground="{StaticResource foreSelectionBrush}">
+                                               Foreground="{StaticResource foreSelectionBrush}"
+                                               Style="{StaticResource defaultWindowHeaderLabel}">
                                             <Label.Content>
                                                 <TextBlock>
                                                     <TextBlock.Text>
@@ -115,11 +130,11 @@
                                             </Label.Content>
                                         </Label>
 
-                                        <Label Grid.Row="1"
-                                               Style="{StaticResource defaultWindowHeaderLabel}"
+                                        <Label FontSize="20"
                                                FontStyle="Italic"
-                                               FontSize="20"
-                                               Foreground="{StaticResource foreSelectionBrush}">
+                                               Foreground="{StaticResource foreSelectionBrush}"
+                                               Grid.Row="1"
+                                               Style="{StaticResource defaultWindowHeaderLabel}">
                                             <Label.Content>
                                                 <TextBlock>
                                                     <TextBlock.Text>
@@ -140,32 +155,32 @@
             </ListView>
         </Grid>
 
-        <Grid Grid.Row="0"
-              Background="{StaticResource addBackBrush}"
+        <Grid Background="{StaticResource addBackBrush}"
+              Grid.Row="0"
               Height="75">
-            <StackPanel Margin="10 0 10 0"
-                        HorizontalAlignment="Left">
+            <StackPanel HorizontalAlignment="Left"
+                        Margin="10 0 10 0">
                 <Label Content="Поиск по ФИО/телефону/компании:"/>
 
-                <TextBox Width="400"
-                         Name="textBoxSearh"
+                <TextBox x:Name="textBoxSearh"
                          HorizontalAlignment="Left"
+                         MaxLength="20"
                          TextChanged="UpdateListOnSearch"
-                         MaxLength="20"/>
+                         Width="400"/>
             </StackPanel>
         </Grid>
 
-        <Grid Grid.Row="2"
-              Background="{StaticResource addBackBrush}">
-            <Button Grid.Column="0"
-                    Margin="10 5"
-                    Width="150"
-                    HorizontalAlignment="Left"
+        <Grid Background="{StaticResource addBackBrush}"
+              Grid.Row="2">
+            <Button x:Name="addButton"
+                    Click="AddManager"
                     Content="Добавить"
-                    Name="addButton"
+                    Grid.Column="0"
+                    HorizontalAlignment="Left"
+                    Margin="10 5"
                     Style="{StaticResource defaultButton}"
                     ToolTip="Добавить менеджера"
-                    Click="AddManager"/>
+                    Width="150"/>
         </Grid>
     </Grid>
 </Page>

@@ -23,17 +23,11 @@ namespace RouteLists.View.Pages.EntityEditors
             _routePoints = routePoints;
         }
 
-        public PageEditRoutePoint(ref List<RoutePoint> routePoints, RoutePoint routePoint)
+        public PageEditRoutePoint(ref List<RoutePoint> routePoints, RoutePoint routePoint) : this(ref routePoints)
         {
-            InitializeComponent();
-            this.Title = "Изменение маршрутной точки";
-            cBoxCompany.ItemsSource = DatabaseContext.Database.Companies.Where(c =>
-                c.Managers.Count > 0).ToList();
-
             RoutePoint = routePoint;
-            _routePoints = routePoints;
 
-            cBoxAction.SelectedItem = RoutePoint.Action;
+            cBoxAction.Text = RoutePoint.Action;
             cBoxCompany.SelectedItem = RoutePoint.Manager.Company;
             cBoxManager.SelectedItem = RoutePoint.Manager;
             txtBoxInvoiceNumber.Text = RoutePoint.InvoiceNumbers;
@@ -41,9 +35,7 @@ namespace RouteLists.View.Pages.EntityEditors
             txtBoxComment.Text = RoutePoint.Comment;
             
             if (RoutePoint.Cost != null)
-            {
                 txtBoxCost.Text = RoutePoint.Cost.Value.ToString();
-            }
         }
 
         public override bool EntityRemoved()
@@ -54,8 +46,19 @@ namespace RouteLists.View.Pages.EntityEditors
 
             if (result == MessageBoxResult.Yes)
             {
+                int pointID = RoutePoint.PointNumber;
+
                 _routePoints.Remove(RoutePoint);
-                DatabaseContext.Database.RoutePoints.Remove(RoutePoint);
+
+                if (DatabaseContext.Database.RoutePoints.ToList().Contains(RoutePoint))
+                {
+                    DatabaseContext.Database.RoutePoints.Remove(RoutePoint);
+                }
+
+                for (int i = pointID - 1; i < _routePoints.Count(); i++)
+                {
+                    _routePoints[i].PointNumber = i + 1;
+                }
 
                 return true;
             }
@@ -74,6 +77,8 @@ namespace RouteLists.View.Pages.EntityEditors
             {
                 RoutePoint = new RoutePoint();
                 _routePoints.Add(RoutePoint);
+
+                RoutePoint.PointNumber = _routePoints.Count();
             }
 
             AppendRoutePointData();
@@ -85,25 +90,29 @@ namespace RouteLists.View.Pages.EntityEditors
         {
             if(cBoxAction.SelectedIndex == -1)
             {
-                MessageBox.Show("Выберите действие!");
+                MessageBox.Show("Выберите действие!",
+                    "Ошибка ввода данных", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
             if (cBoxCompany.SelectedIndex == -1)
             {
-                MessageBox.Show("Выберите компанию!");
+                MessageBox.Show("Выберите компанию!",
+                    "Ошибка ввода данных", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
             if (cBoxManager.SelectedIndex == -1)
             {
-                MessageBox.Show("Выберите менеджера компании!");
+                MessageBox.Show("Выберите менеджера компании!",
+                    "Ошибка ввода данных", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
-            if (txtBoxInvoiceNumber.Text.Replace(" ", "") == string.Empty)
+            if (txtBoxInvoiceNumber.Text.Replace(" ", "").Replace(Environment.NewLine, "") == string.Empty)
             {
-                MessageBox.Show("Укажите номер счёта!");
+                MessageBox.Show("Укажите номер счёта!",
+                    "Ошибка ввода данных", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
@@ -111,13 +120,15 @@ namespace RouteLists.View.Pages.EntityEditors
                 ((txtBoxCost.Text.Replace(" ", "") == string.Empty) ||
                 !StringValidator.IsCorrectCost(txtBoxCost.Text)))
             {
-                MessageBox.Show("Укажите цену товара в форматах\n\nЦена = 0\n\nЦена = 0.00!");
+                MessageBox.Show("Укажите цену товара в форматах\n\nЦена = 0\n\nЦена = 0.00!",
+                    "Ошибка ввода данных", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
-            if (txtBoxAddress.Text.Replace(" ", "") == string.Empty)
+            if (txtBoxAddress.Text.Replace(" ", "").Replace(Environment.NewLine, "") == string.Empty)
             {
-                MessageBox.Show("Укажите адрес точки!");
+                MessageBox.Show("Укажите адрес точки!",
+                    "Ошибка ввода данных", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
@@ -131,14 +142,9 @@ namespace RouteLists.View.Pages.EntityEditors
             RoutePoint.Manager = (Manager)cBoxManager.SelectedItem;
             RoutePoint.InvoiceNumbers = txtBoxInvoiceNumber.Text;
             RoutePoint.Comment = txtBoxComment.Text;
-            RoutePoint.PointNumber = _routePoints.Count();
 
             if (cBoxAction.SelectedIndex == 1)
-            {
                 RoutePoint.Cost = Convert.ToDecimal(txtBoxCost.Text);
-            }
-
-            return;
         }
 
         private void LoadManagersList(object sender, SelectionChangedEventArgs e)

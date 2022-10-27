@@ -6,8 +6,7 @@ namespace RouteLists.ViewModel
     public class StringValidator
     {
         private static Regex VehicleNumberRegex => new Regex("([АВЕКМНОРСТУХ]\\s*\\d{3}\\s*[АВЕКМНОРСТУХ]{2}\\s*\\d{2,3})$");
-        private static Regex PhoneNumberRegex => new Regex("^(\\s*)?(\\+)?([- _():=+]?\\d[- _():=+]?){10,14}(\\s*)?$");
-
+        private static Regex PhoneNumberRegex => new Regex("^(\\s*)?(\\+)?([- _():=+]?\\d[- _():=+]?){11}(\\s*)?$");
         private static Regex CostRegex => new Regex("^[0-9]*(\\,)?[0-9][0-9]?$");
 
         public static bool IsCorrectVehicleNumber(string input)

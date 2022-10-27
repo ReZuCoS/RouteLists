@@ -13,12 +13,10 @@ namespace RouteLists.View.Pages.EntityEditors
         public PageEditCompany()
         {
             InitializeComponent();
-            this.Title = "Добавление компании";
         }
 
-        public PageEditCompany(Company company)
+        public PageEditCompany(Company company) : this()
         {
-            InitializeComponent();
             this.Title = "Изменение компании";
             _company = company;
 
@@ -27,19 +25,14 @@ namespace RouteLists.View.Pages.EntityEditors
 
         public override bool EntityRemoved()
         {
-            MessageBoxResult result = MessageBox.Show($"Данное действие удалит маршрутные точки и менеджеров, данные о которых " +
-                $"содержат наименование данной компании.\n\n" +
-                $"Вы действительно хотите удалить компанию: {_company.Title}?\n\nДанное действие невозможно отменить!",
+            MessageBoxResult result = MessageBox.Show($"Данное действие удалит маршрутные точки и менеджеров, " +
+                $"данные о которых содержат наименование данной компании." +
+                $"\n\nВы действительно хотите удалить компанию: {_company.Title}?" +
+                $"\n\nДанное действие невозможно отменить!",
                 "Удаление компании", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             if (result == MessageBoxResult.Yes)
             {
-                List<RoutePoint> routePoints = DatabaseContext.Database.RoutePoints.ToList().Where(rp => rp.Manager.Company == _company).ToList();
-                DatabaseContext.Database.RoutePoints.RemoveRange(routePoints);
-
-                List<Manager> managers = DatabaseContext.Database.Managers.ToList().Where(m => m.Company == _company).ToList();
-                DatabaseContext.Database.Managers.RemoveRange(managers);
-
                 DatabaseContext.Database.Companies.Remove(_company);
                 DatabaseContext.SaveDatabase();
                 return true;
@@ -47,7 +40,7 @@ namespace RouteLists.View.Pages.EntityEditors
 
             return false;
         }
-
+        
         public override bool EntitySaved()
         {
             if (!EntityValidated())
@@ -76,14 +69,16 @@ namespace RouteLists.View.Pages.EntityEditors
         {
             if (txtBoxTitle.Text.Replace(" ", "") == "")
             {
-                MessageBox.Show("Введите наименование компании!");
+                MessageBox.Show("Введите наименование компании!",
+                    "Ошибка ввода данных", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
             if (DatabaseContext.Database.Companies.ToList().Any(c =>
                 c.Title == txtBoxTitle.Text))
             {
-                MessageBox.Show("Компания с таким наименованием уже существует!");
+                MessageBox.Show("Компания с таким наименованием уже существует!",
+                    "Ошибка ввода данных", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 

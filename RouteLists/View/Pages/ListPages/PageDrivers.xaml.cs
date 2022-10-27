@@ -1,5 +1,6 @@
 ﻿using RouteLists.Model;
 using RouteLists.View.Pages.EntityEditors;
+using RouteLists.View.Pages.ReportPages;
 using RouteLists.View.Windows;
 using RouteLists.ViewModel;
 using System;
@@ -27,7 +28,8 @@ namespace RouteLists.View.Pages.ListPages
         {
             _drivers = DatabaseContext.Database.Drivers.ToList();
 
-            if (textBoxSearh.Text.Any(char.IsDigit) || textBoxSearh.Text.Any(char.IsSeparator))
+            if (textBoxSearh.Text.Any(char.IsDigit) ||
+                textBoxSearh.Text.Any(char.IsSeparator))
             {
                 _drivers = _drivers.Where(d => d.HasVehicle == true).ToList()
                     .Where(d => d.Vehicle.Number.ToLower()
@@ -55,9 +57,7 @@ namespace RouteLists.View.Pages.ListPages
             bool isListUpdated = (bool)windowEditor.ShowDialog();
 
             if (isListUpdated)
-            {
                 UpdateList();
-            }
         }
 
         private void AddDriver(object sender, RoutedEventArgs e)
@@ -67,9 +67,7 @@ namespace RouteLists.View.Pages.ListPages
             bool isListUpdated = (bool)windowEditor.ShowDialog();
 
             if (isListUpdated)
-            {
                 UpdateList();
-            }
         }
 
         private void ListUpdateOnSearh(object sender, TextChangedEventArgs e)
@@ -95,24 +93,18 @@ namespace RouteLists.View.Pages.ListPages
             button.IsEnabled = true;
         }
 
-        private void ClearFocus(object sender, MouseButtonEventArgs e)
-        {
-            Keyboard.ClearFocus();
-        }
-
-        //TODO Сделать отчёт по водителям
         private void ShowDriverReport(object sender, RoutedEventArgs e)
         {
             Driver selectedDriver = (Driver)listViewMain.SelectedItem;
 
-            WindowEntityEditor windowEditor = new WindowEntityEditor(new PageEditDriver(selectedDriver), true, true);
+            new WindowEntityEditor(
+                new DriverReportPage(selectedDriver), default, true)
+                .ShowDialog();
+        }
 
-            bool isListUpdated = (bool)windowEditor.ShowDialog();
-
-            if (isListUpdated)
-            {
-                UpdateList();
-            }
+        private void ClearFocus(object sender, MouseButtonEventArgs e)
+        {
+            Keyboard.ClearFocus();
         }
     }
 }

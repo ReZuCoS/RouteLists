@@ -1,4 +1,6 @@
 ﻿using RouteLists.Services;
+using RouteLists.ViewModel;
+using System;
 using System.Diagnostics;
 using System.Windows;
 
@@ -10,19 +12,25 @@ namespace RouteLists
         {
             if (!IsApplicationUnique())
             {
-                App.Current.Shutdown();
+                Environment.Exit(0);
                 return;
             }
 
-            SQLServiceController.Start();
+            if (!SQLServiceController.IsRunning)
+            {
+                SQLServiceController.Start();
+                return;
+            }
 
+            DriverExpUpdateService.Sync();
+            
             base.OnStartup(e);
         }
 
         protected override void OnExit(ExitEventArgs e)
         {
-            //TODO Enable SQL service Stopper
-            //SQLServiceController.Stop();
+            if (AppSettings.DisableSQLServerOnExit)
+                SQLServiceController.Stop();
 
             base.OnExit(e);
         }
@@ -36,8 +44,16 @@ namespace RouteLists
                 if (p.ProcessName == "RouteLists" &&
                    p.Id != Process.GetCurrentProcess().Id)
                 {
-                    MessageBox.Show("Запущен другой процесс приложения!", "Ошибка",
-                        MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBoxResult result = MessageBox.Show("Запущен другой процесс приложения!\n" +
+                        "Завершить работу другого процесса?", "Ошибка",
+                        MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        p.Kill();
+                        return true;
+                    }
+
                     return false;
                 }
             }

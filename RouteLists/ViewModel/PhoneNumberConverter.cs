@@ -7,7 +7,7 @@ namespace RouteLists.ViewModel
 {
     internal class PhoneNumberConverter : IValueConverter
     {
-        private Regex PhoneNumberRegex => new Regex("^(\\s*)?(\\+)?([- _():=+]?\\d[- _():=+]?){10,14}(\\s*)?$");
+        private Regex PhoneNumberRegex => new Regex("^(\\s*)?(\\+)?([- _():=+]?\\d[- _():=+]?){11}(\\s*)?$");
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

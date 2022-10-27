@@ -46,9 +46,7 @@ namespace RouteLists.View.Pages.ListPages
             bool isListUpdated = (bool)windowEditor.ShowDialog();
 
             if (isListUpdated)
-            {
                 UpdateList();
-            }
         }
 
         private void AddManager(object sender, RoutedEventArgs e)
@@ -58,14 +56,17 @@ namespace RouteLists.View.Pages.ListPages
             bool isListUpdated = (bool)windowEditor.ShowDialog();
 
             if (isListUpdated)
-            {
                 UpdateList();
-            }
         }
 
         private void UpdateListOnSearch(object sender, TextChangedEventArgs e)
         {
             UpdateList();
+        }
+
+        private void ClearFocus(object sender, MouseButtonEventArgs e)
+        {
+            Keyboard.ClearFocus();
         }
     }
 }

@@ -17,20 +17,24 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="1">
-            <ListView Name="listViewMain"
+            <ListView d:ItemsSource="{d:SampleData ItemCount=2}"
+                      x:Name="listViewMain"
                       Background="{StaticResource mainBackBrush}"
-                      ScrollViewer.CanContentScroll="False"
                       HorizontalAlignment="Stretch"
-                      d:ItemsSource="{d:SampleData ItemCount=2}">
+                      ScrollViewer.CanContentScroll="False">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="{x:Type ListViewItem}">
                         <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="IsSelected" Value="True"/>
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Setter Property="IsSelected"
+                                        Value="True"/>
                             </Trigger>
                         </Style.Triggers>
-                        <EventSetter Event="MouseDoubleClick" Handler="EditSelectedVehicle"/>
-                        <Setter Property="Background" Value="Transparent" />
+                        <EventSetter Event="MouseDoubleClick"
+                                     Handler="EditSelectedVehicle"/>
+                        <Setter Property="Background"
+                                Value="Transparent" />
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type ListViewItem}">
@@ -44,16 +48,21 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Border BorderThickness="2"
-                                Margin="5"
-                                CornerRadius="5">
+                                CornerRadius="5"
+                                Margin="5">
                             <Border.Style>
                                 <Style TargetType="{x:Type Border}">
-                                    <Setter Property="BorderBrush" Value="{StaticResource unactiveBrush}"/>
-                                    <Setter Property="Background" Value="{StaticResource mainBackBrush}"/>
+                                    <Setter Property="BorderBrush"
+                                            Value="{StaticResource unactiveBrush}"/>
+                                    <Setter Property="Background"
+                                            Value="{StaticResource mainBackBrush}"/>
                                     <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="BorderBrush" Value="{StaticResource foreSelectionBrush}"/>
-                                            <Setter Property="Background" Value="{StaticResource addBackBrush}"/>
+                                        <Trigger Property="IsMouseOver"
+                                                 Value="True">
+                                            <Setter Property="BorderBrush"
+                                                    Value="{StaticResource foreSelectionBrush}"/>
+                                            <Setter Property="Background"
+                                                    Value="{StaticResource addBackBrush}"/>
                                         </Trigger>
                                     </Style.Triggers>
                                 </Style>
@@ -86,23 +95,23 @@
                                             Grid.Column="0"
                                             Height="40">
 
-                                        <StackPanel Orientation="Horizontal"
-                                                    HorizontalAlignment="Center">
+                                        <StackPanel HorizontalAlignment="Center"
+                                                    Orientation="Horizontal">
                                             <Label Content="{Binding NumberParts[0]}"
                                                    HorizontalAlignment="Center"
-                                                   VerticalAlignment="Bottom"
-                                                   Margin="0 0 0 -4"/>
+                                                   Margin="0 0 0 -4"
+                                                   VerticalAlignment="Bottom"/>
 
                                             <Label Content="{Binding NumberParts[1]}"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Bottom"
                                                    FontSize="28"
-                                                   Margin="-7"/>
+                                                   HorizontalAlignment="Center"
+                                                   Margin="-7"
+                                                   VerticalAlignment="Bottom"/>
 
                                             <Label Content="{Binding NumberParts[2]}"
                                                    HorizontalAlignment="Center"
-                                                   VerticalAlignment="Bottom"
-                                                   Margin="0 0 0 -4"/>
+                                                   Margin="0 0 0 -4"
+                                                   VerticalAlignment="Bottom"/>
                                         </StackPanel>
                                     </Border>
 
@@ -113,20 +122,20 @@
                                             Grid.Column="1"
                                             Height="40">
                                         <Label Content="{Binding NumberParts[3]}"
+                                               FontSize="28"
                                                HorizontalAlignment="Center"
-                                               VerticalAlignment="Bottom"
                                                Margin="0 -7 0 -7"
-                                               FontSize="28"/>
+                                               VerticalAlignment="Bottom"/>
                                     </Border>
                                 </Grid>
 
-                                <StackPanel Orientation="Vertical"
-                                            Grid.Row="1"
-                                            Grid.Column="0">
-                                    <Label Style="{StaticResource defaultWindowHeaderLabel}"
+                                <StackPanel Grid.Row="1"
+                                            Grid.Column="0"
+                                            Orientation="Vertical">
+                                    <Label FontSize="20"
                                            FontStyle="Italic"
-                                           FontSize="20"
-                                           Foreground="{StaticResource foreSelectionBrush}">
+                                           Foreground="{StaticResource foreSelectionBrush}"
+                                           Style="{StaticResource defaultWindowHeaderLabel}">
                                         <Label.Content>
                                             <TextBlock>
                                                 <TextBlock.Text>
@@ -139,11 +148,11 @@
                                         </Label.Content>
                                     </Label>
 
-                                    <Label Grid.Row="1"
-                                           Style="{StaticResource defaultWindowHeaderLabel}"
+                                    <Label FontSize="20"
                                            FontStyle="Italic"
-                                           FontSize="20"
-                                           Foreground="{StaticResource foreSelectionBrush}">
+                                           Foreground="{StaticResource foreSelectionBrush}"
+                                           Grid.Row="1"
+                                           Style="{StaticResource defaultWindowHeaderLabel}">
                                         <Label.Content>
                                             <TextBlock>
                                                 <TextBlock.Text>
@@ -163,13 +172,16 @@
                                       Width="275">
                                     <Grid.Style>
                                         <Style TargetType="Grid">
-                                            <Setter Property="Visibility" Value="Hidden"/>
+                                            <Setter Property="Visibility"
+                                                    Value="Hidden"/>
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding HasVehiclePass}" Value="True">
-                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                    <Setter Property="Visibility"
+                                                            Value="Visible"/>
                                                 </DataTrigger>
                                                 <DataTrigger Binding="{Binding VehiclePass.PassTypeID}" Value="0">
-                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                    <Setter Property="Visibility"
+                                                            Value="Hidden"/>
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
@@ -180,22 +192,28 @@
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
 
-                                    <Border Grid.Row="0"
+                                    <Border CornerRadius="5 5 0 0"
                                             BorderBrush="{StaticResource foreBrush}"
                                             BorderThickness="2 2 2 0"
-                                            CornerRadius="5 5 0 0"
+                                            Grid.Row="0"
                                             Margin="5 5 5 0">
                                         <Border.Style>
                                             <Style TargetType="Border">
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding VehiclePass.ExpireType}" Value="0">
-                                                        <Setter Property="Background" Value="{StaticResource passActiveBrush}"/>
+                                                    <DataTrigger Binding="{Binding VehiclePass.ExpireType}"
+                                                                 Value="0">
+                                                        <Setter Property="Background"
+                                                                Value="{StaticResource passActiveBrush}"/>
                                                     </DataTrigger>
-                                                    <DataTrigger Binding="{Binding VehiclePass.ExpireType}" Value="1">
-                                                        <Setter Property="Background" Value="{StaticResource passStartsExpiresBrush}"/>
+                                                    <DataTrigger Binding="{Binding VehiclePass.ExpireType}"
+                                                                 Value="1">
+                                                        <Setter Property="Background"
+                                                                Value="{StaticResource passStartsExpiresBrush}"/>
                                                     </DataTrigger>
-                                                    <DataTrigger Binding="{Binding VehiclePass.ExpireType}" Value="2">
-                                                        <Setter Property="Background" Value="{StaticResource passExpiredBrush}"/>
+                                                    <DataTrigger Binding="{Binding VehiclePass.ExpireType}"
+                                                                 Value="2">
+                                                        <Setter Property="Background"
+                                                                Value="{StaticResource passExpiredBrush}"/>
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
@@ -205,11 +223,11 @@
                                                HorizontalAlignment="Center"/>
                                     </Border>
 
-                                    <Border Grid.Row="1"
-                                            Background="{StaticResource mainBackBrush}"
+                                    <Border Background="{StaticResource mainBackBrush}"
                                             BorderBrush="{StaticResource foreBrush}"
                                             BorderThickness="2"
                                             CornerRadius="0 0 5 5"
+                                            Grid.Row="1"
                                             Margin="5 0 5 5">
                                         <StackPanel>
                                             <Label Name="labelPassType">
@@ -247,29 +265,29 @@
             </ListView>
         </Grid>
 
-        <Grid Grid.Row="0"
-              Background="{StaticResource addBackBrush}"
+        <Grid Background="{StaticResource addBackBrush}"
+              Grid.Row="0"
               Height="75">
-            <StackPanel Margin="10 0 10 0"
-                        HorizontalAlignment="Left">
+            <StackPanel HorizontalAlignment="Left"
+                        Margin="10 0 10 0">
                 <Label Content="Поиск по гос. номеру:"/>
 
-                <TextBox Width="270"
-                         Name="textBoxSearh"
+                <TextBox x:Name="textBoxSearh"
                          HorizontalAlignment="Left"
+                         MaxLength="20"
                          TextChanged="ListUpdateOnSearh"
-                         MaxLength="20"/>
+                         Width="270"/>
             </StackPanel>
 
-            <StackPanel Margin="10 0 10 0"
-                        HorizontalAlignment="Right">
+            <StackPanel HorizontalAlignment="Right"
+                        Margin="10 0 10 0">
                 <Label Content="Пропуск:"/>
 
-                <ComboBox HorizontalAlignment="Left"
-                          Width="255"
+                <ComboBox x:Name="comboBoxPassFilter"
+                          HorizontalAlignment="Left"
                           SelectedIndex="0"
                           SelectionChanged="UpdateListOnFilterChange"
-                          Name="comboBoxPassFilter">
+                          Width="255">
                     <ComboBoxItem Content="Нет"/>
                     <ComboBoxItem Content="Действует"/>
                     <ComboBoxItem Content="Истекает"/>
@@ -278,17 +296,17 @@
             </StackPanel>
         </Grid>
 
-        <Grid Grid.Row="2"
-              Background="{StaticResource addBackBrush}">
-            <Button Grid.Column="0"
-                    Margin="10 5"
-                    Width="150"
-                    HorizontalAlignment="Left"
+        <Grid Background="{StaticResource addBackBrush}"
+              Grid.Row="2">
+            <Button x:Name="addButton"
+                    Click="AddVehicle"
                     Content="Добавить"
-                    Name="addButton"
+                    Grid.Column="0"
+                    HorizontalAlignment="Left"
+                    Margin="10 5"
                     Style="{StaticResource defaultButton}"
                     ToolTip="Добавить автомобиль"
-                    Click="AddVehicle"/>
+                    Width="150"/>
         </Grid>
     </Grid>
 </Page>

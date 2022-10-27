@@ -1,11 +1,12 @@
 ﻿<local:EntityPage x:Class="RouteLists.View.Pages.EntityEditors.PageEditVehicle"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:RouteLists.View.Pages.EntityEditors"
-      mc:Ignorable="d" 
-      Background="{StaticResource addBackBrush}">
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                  xmlns:local="clr-namespace:RouteLists.View.Pages.EntityEditors"
+                  mc:Ignorable="d" 
+                  Background="{StaticResource addBackBrush}"
+                  Title="Добавление авто">
 
     <StackPanel Orientation="Vertical">
         <Grid>
@@ -21,66 +22,68 @@
                 <ColumnDefinition MaxWidth="450" Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Column="0"
+            <Label Content="Гос. номер:"
+                   Grid.Column="0"
                    Grid.Row="0"
-                   Content="Гос. номер:"
                    Margin="10 5"/>
 
-            <TextBox Width="auto"
-                     Name="txtBoxNumber"
-                     Grid.Row="0"
+            <TextBox x:Name="txtBoxNumber"
                      Grid.Column="2"
+                     Grid.Row="0"
                      Margin="10 5"
-                     MaxLength="15">
+                     MaxLength="15"
+                     Width="auto">
                 <TextBox.Style>
-                    <Style TargetType="TextBox"
-                           BasedOn="{StaticResource {x:Type TextBox}}">
+                    <Style BasedOn="{StaticResource {x:Type TextBox}}"
+                           TargetType="TextBox">
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding
                                             ElementName=txtBoxNumber,
                                             Path=Text,
                                             Converter={StaticResource VehicleNumberConverter}}"
                                          Value="True">
-                                <Setter Property="BorderBrush" Value="{StaticResource passExpiredBrush}"/>
+                                <Setter Property="BorderBrush"
+                                        Value="{StaticResource passExpiredBrush}"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </TextBox.Style>
             </TextBox>
 
-            <Label Grid.Row="1"
+            <Label Content="Марка авто:"
                    Grid.Column="0"
-                   Content="Марка авто:"
+                   Grid.Row="1"
                    Margin="10 5"/>
 
-            <TextBox Name="txtBoxBrand"
-                     Width="auto"
+            <TextBox x:Name="txtBoxBrand"
+                     Grid.Column="2"
                      Grid.Row="1"
-                     Grid.Column="2"
                      Margin="10 5"
-                     MaxLength="150"/>
+                     MaxLength="150"
+                     Width="auto"/>
 
-            <Label Grid.Column="0"
+            <Label Content="Тоннаж (кг):"
+                   Grid.Column="0"
                    Grid.Row="2"
-                   Content="Тоннаж (кг):"
                    Margin="10 5"/>
 
-            <TextBox Width="auto"
-                     Grid.Row="2"
-                     Name="txtBoxTonnage"
+            <TextBox x:Name="txtBoxTonnage"
                      Grid.Column="2"
+                     Grid.Row="2"
                      Margin="10 5"
-                     MaxLength="10">
+                     MaxLength="10"
+                     Width="auto">
                 <TextBox.Style>
-                    <Style TargetType="TextBox"
-                           BasedOn="{StaticResource {x:Type TextBox}}">
+                    <Style BasedOn="{StaticResource {x:Type TextBox}}"
+                           TargetType="TextBox">
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding
                                             ElementName=txtBoxTonnage,
                                             Path=Text,
                                             Converter={StaticResource OnlyDigitsConverter}}"
                                          Value="True">
-                                <Setter Property="BorderBrush" Value="{StaticResource passExpiredBrush}"/>
+                                <Setter Property="BorderBrush"
+                                        Value="{StaticResource passExpiredBrush}"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
@@ -89,17 +92,19 @@
         </Grid>
         
         <Grid d:Visibility="Visible"
-              Name="gridPass">
+              x:Name="gridPass">
             <Grid.Style>
                 <Style TargetType="Grid">
-                    <Setter Property="IsEnabled" Value="False"/>
+                    <Setter Property="IsEnabled"
+                            Value="False"/>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding
                                         ElementName=txtBoxTonnage,
                                         Path=Text,
                                         Converter={StaticResource TonnageConverter}}"
                                      Value="True">
-                            <Setter Property="IsEnabled" Value="True"/>
+                            <Setter Property="IsEnabled"
+                                    Value="True"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
@@ -107,18 +112,19 @@
 
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
-                    <CheckBox Height="20"
-                              Width="20"
+                    <CheckBox x:Name="checkBoxHasPass"
+                              Height="20"
+                              Margin="15 0 5 0"
                               Template="{StaticResource defaultCheckBox}"
-                              Margin="10 0"
-                              Name="checkBoxHasPass">
+                              Width="20">
                         <CheckBox.Style>
                             <Style TargetType="CheckBox">
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding ElementName=gridPass,
                                                     Path=IsEnabled}"
                                                  Value="False">
-                                        <Setter Property="IsChecked" Value="False"/>
+                                        <Setter Property="IsChecked"
+                                                Value="False"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
@@ -131,13 +137,15 @@
                 <Grid d:Visibility="Visible">
                     <Grid.Style>
                         <Style TargetType="Grid">
-                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Setter Property="Visibility"
+                                    Value="Collapsed"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding
                                                 ElementName=checkBoxHasPass,
                                                 Path=IsChecked}"
                                              Value="True">
-                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Setter Property="Visibility"
+                                            Value="Visible"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
@@ -155,27 +163,27 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Content="Тип пропуска:"
+                           Grid.Column="0"
                            Grid.Row="0"
-                           Margin="10 5"
-                           Grid.Column="0"/>
+                           Margin="10 5"/>
 
-                    <ComboBox Width="auto"
-                              Name="cBoxPassType"
-                              Grid.Row="0"
+                    <ComboBox x:Name="cBoxPassType"
                               Grid.Column="2"
-                              Margin="10 5 -5 5">
+                              Grid.Row="0"
+                              Margin="10 5 -5 5"
+                              Width="auto">
                         <ComboBoxItem Content="ТТК"/>
                         <ComboBoxItem Content="СК"/>
                     </ComboBox>
 
                     <Label Content="Дата истечения:"
+                           Grid.Column="0"
                            Grid.Row="1"
-                           Margin="10 5"
-                           Grid.Column="0"/>
+                           Margin="10 5"/>
 
-                    <DatePicker Grid.Row="1"
-                                Name="datePickerPassExpire"
+                    <DatePicker x:Name="datePickerPassExpire"
                                 Grid.Column="2"
+                                Grid.Row="1"
                                 Margin="10 5"/>
                 </Grid>
             </StackPanel>

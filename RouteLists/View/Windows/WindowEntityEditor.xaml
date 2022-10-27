@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RouteLists.View.Windows"
         mc:Ignorable="d"
-        SizeToContent="WidthAndHeight"
-        ResizeMode="NoResize"
         Height="auto"
-        Width="auto"
-        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        SizeToContent="WidthAndHeight"
         SnapsToDevicePixels="True"
-        Topmost="True">
+        Topmost="True"
+        Width="auto"
+        WindowStartupLocation="CenterOwner">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -23,37 +23,37 @@
             <Frame Name="mainFrame"/>
         </Grid>
 
-        <Grid Grid.Row="1"
-              Background="{StaticResource accentBrush}">
+        <Grid Background="{StaticResource accentBrush}"
+              Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0"
-                    HorizontalAlignment="Left"
-                    Style="{StaticResource defaultButton}"
-                    Margin="10 5"
-                    Name="buttonSave"
+            <Button x:Name="buttonSave"
+                    Click="SaveEntity"
                     Content="Сохранить"
-                    Click="SaveEntity"/>
-
-            <Button Grid.Column="1"
+                    Grid.Column="0"
+                    HorizontalAlignment="Left"
                     Margin="10 5"
-                    Style="{StaticResource defaultButton}"
+                    Style="{StaticResource defaultButton}"/>
+
+            <Button d:Visibility="Visible"
+                    x:Name="buttonRemove"
+                    Click="RemoveEntity"
                     Content="Удалить"
-                    Name="buttonRemove"
-                    d:Visibility="Visible"
-                    Visibility="Collapsed"
-                    Click="RemoveEntity"/>
-
-            <Button Grid.Column="2"
-                    HorizontalAlignment="Right"
-                    Style="{StaticResource defaultButton}"
+                    Grid.Column="1"
                     Margin="10 5"
+                    Style="{StaticResource defaultButton}"
+                    Visibility="Collapsed"/>
+
+            <Button Click="CloseEditor"
                     Content="Назад"
-                    Click="CloseEditor"/>
+                    Grid.Column="2"
+                    HorizontalAlignment="Right"
+                    Margin="10 5"
+                    Style="{StaticResource defaultButton}"/>
         </Grid>
     </Grid>
 </Window>

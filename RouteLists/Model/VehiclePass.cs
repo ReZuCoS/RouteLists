@@ -15,17 +15,11 @@ namespace RouteLists.Model
 
         private static PassExpireType IsExpiredOrStartsExpire(DateTime date)
         {
-            DateTime currentDate = DateTime.Now;
-
-            if (date <= currentDate)
-            {
+            if (date <= DateTime.Now)
                 return PassExpireType.Expired;
-            }
 
-            if ((date - currentDate).TotalDays < 30)
-            {
+            if ((date - DateTime.Now).TotalDays < 30)
                 return PassExpireType.StartsExpire;
-            }
 
             return PassExpireType.Valid;
         }
@@ -39,9 +33,11 @@ namespace RouteLists.Model
         [Column(TypeName = "date")]
         public DateTime ExpireDate { get; set; }
 
-        public PassExpireType ExpireType { get => IsExpiredOrStartsExpire(ExpireDate); }
+        public PassExpireType ExpireType =>
+            IsExpiredOrStartsExpire(ExpireDate);
 
-        public string FormattedExpiredDate { get => ExpireDate.ToString("dd/MM/yyyy"); }
+        public string FormattedExpiredDate =>
+            ExpireDate.ToString("dd/MM/yyyy");
 
         public virtual PassType PassType { get; set; }
 

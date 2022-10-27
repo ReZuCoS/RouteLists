@@ -1,4 +1,5 @@
-﻿using RouteLists.Model;
+﻿using Microsoft.Win32;
+using RouteLists.Model;
 using RouteLists.View.Pages.EntityEditors;
 using RouteLists.View.Windows;
 using RouteLists.ViewModel;
@@ -18,10 +19,10 @@ namespace RouteLists.View.Pages.ListPages
         public PageRouteLists()
         {
             InitializeComponent();
-            _ = DatabaseContext.Database.Companies.ToList();
+
+            DatabaseContext.Database.Companies.ToList();
             datePickerStart.SelectedDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
             datePickerEnd.SelectedDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month + 1, 1).AddDays(-1);
-            UpdateList();
         }
 
         public void UpdateList()
@@ -63,16 +64,16 @@ namespace RouteLists.View.Pages.ListPages
         private List<RouteList> UpdateListNumberID(List<RouteList> lists)
         {
             List<Vehicle> vehicles = lists.Select(l => l.Vehicle)
-                                          .Distinct()
-                                          .ToList();
+                .Distinct()
+                .ToList();
             
             foreach (var vehicle in vehicles)
             {
                 int indexer = 1;
                 
                 foreach (RouteList list in lists.Where(l => l.Vehicle == vehicle)
-                                                .OrderBy(l => l.Date)
-                                                .ToList())
+                    .OrderBy(l => l.Date)
+                    .ToList())
                 {
                     list.ListNumberPerMonth = indexer;
                     indexer++;
@@ -89,9 +90,7 @@ namespace RouteLists.View.Pages.ListPages
             bool isListUpdated = (bool)windowEditor.ShowDialog();
 
             if (isListUpdated)
-            {
                 UpdateList();
-            }
         }
 
         private void EditSelectedRouteList(object sender, MouseButtonEventArgs e)
@@ -103,9 +102,7 @@ namespace RouteLists.View.Pages.ListPages
             bool isListUpdated = (bool)windowEditor.ShowDialog();
 
             if (isListUpdated)
-            {
                 UpdateList();
-            }
         }
 
         private void UpdateListOnSearch(object sender, TextChangedEventArgs e)
@@ -121,8 +118,31 @@ namespace RouteLists.View.Pages.ListPages
         private void ExportSelectedRouteList(object sender, RoutedEventArgs e)
         {
             RouteList routeList = (RouteList)listViewMain.SelectedItem;
+            
+            SaveFileDialog fileDialog = new SaveFileDialog()
+            {
+                AddExtension = true,
+                DefaultExt = "xlsx",
+                Title = "Выберите путь для сохранения",
+                Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*",
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+                FileName = routeList.ListNumber + ".xlsx",
+            };
 
+            if (fileDialog.ShowDialog() != true)
+            {
+                return;
+            }
 
+            if (ExcelRouteListCreator.IsExcelFileCreated(routeList, fileDialog.FileName))
+            {
+                ExcelRouteListCreator.OpenFile(fileDialog.FileName);
+            }
+        }
+
+        private void ClearFocus(object sender, MouseButtonEventArgs e)
+        {
+            Keyboard.ClearFocus();
         }
     }
 }

@@ -17,20 +17,24 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="1">
-            <ListView Name="listViewMain"
+            <ListView d:ItemsSource="{d:SampleData ItemCount=2}"
+                      x:Name="listViewMain"
                       Background="{StaticResource mainBackBrush}"
-                      ScrollViewer.CanContentScroll="False"
                       HorizontalAlignment="Stretch"
-                      d:ItemsSource="{d:SampleData ItemCount=2}">
+                      ScrollViewer.CanContentScroll="False">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="{x:Type ListViewItem}">
                         <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="IsSelected" Value="True"/>
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Setter Property="IsSelected"
+                                        Value="True"/>
                             </Trigger>
                         </Style.Triggers>
-                        <EventSetter Event="MouseDoubleClick" Handler="EditSelectedDriver"/>
-                        <Setter Property="Background" Value="Transparent" />
+                        <EventSetter Event="MouseDoubleClick"
+                                     Handler="EditSelectedDriver"/>
+                        <Setter Property="Background"
+                                Value="Transparent" />
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type ListViewItem}">
@@ -44,16 +48,21 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Border BorderThickness="2"
-                                Margin="5"
-                                CornerRadius="5">
+                                CornerRadius="5"
+                                Margin="5">
                             <Border.Style>
                                 <Style TargetType="{x:Type Border}">
-                                    <Setter Property="BorderBrush" Value="{StaticResource unactiveBrush}"/>
-                                    <Setter Property="Background" Value="{StaticResource mainBackBrush}"/>
+                                    <Setter Property="BorderBrush"
+                                            Value="{StaticResource unactiveBrush}"/>
+                                    <Setter Property="Background"
+                                            Value="{StaticResource mainBackBrush}"/>
                                     <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="BorderBrush" Value="{StaticResource foreSelectionBrush}"/>
-                                            <Setter Property="Background" Value="{StaticResource addBackBrush}"/>
+                                        <Trigger Property="IsMouseOver"
+                                                 Value="True">
+                                            <Setter Property="BorderBrush"
+                                                    Value="{StaticResource foreSelectionBrush}"/>
+                                            <Setter Property="Background"
+                                                    Value="{StaticResource addBackBrush}"/>
                                         </Trigger>
                                     </Style.Triggers>
                                 </Style>
@@ -80,25 +89,25 @@
                                         </Label.Content>
                                     </Label>
 
-                                    <Button Name="reportButton"
+                                    <Button x:Name="reportButton"
                                             Background="Transparent"
                                             BorderBrush="Transparent"
-                                            ToolTip="Отчёт о доставках"
-                                            Width="125"
                                             Click="ShowDriverReport"
                                             Content="Отчёт"
                                             HorizontalAlignment="Right"
                                             Margin="10 5"
-                                            Style="{StaticResource defaultButton}"/>
+                                            Style="{StaticResource defaultButton}"
+                                            ToolTip="Отчёт о доставках"
+                                            Width="125"/>
                                 </Grid>
 
                                 <Grid Grid.Row="1">
-                                    <StackPanel Orientation="Vertical"
-                                                Grid.Column="0">
-                                        <Label Style="{StaticResource defaultWindowHeaderLabel}"
+                                    <StackPanel Grid.Column="0"
+                                                Orientation="Vertical">
+                                        <Label FontSize="20"
                                                FontStyle="Italic"
-                                               FontSize="20"
-                                               Foreground="{StaticResource foreSelectionBrush}">
+                                               Foreground="{StaticResource foreSelectionBrush}"
+                                               Style="{StaticResource defaultWindowHeaderLabel}">
                                             <Label.Content>
                                                 <TextBlock>
                                                     <TextBlock.Text>
@@ -111,11 +120,11 @@
                                             </Label.Content>
                                         </Label>
 
-                                        <Label Grid.Row="1"
-                                               Style="{StaticResource defaultWindowHeaderLabel}"
+                                        <Label FontSize="20"
                                                FontStyle="Italic"
-                                               FontSize="20"
-                                               Foreground="{StaticResource foreSelectionBrush}">
+                                               Foreground="{StaticResource foreSelectionBrush}"
+                                               Grid.Row="1"
+                                               Style="{StaticResource defaultWindowHeaderLabel}">
                                             <Label.Content>
                                                 <TextBlock>
                                                     <TextBlock.Text>
@@ -129,16 +138,17 @@
                                         </Label>
 
                                         <StackPanel Orientation="Horizontal">
-                                            <Label Style="{StaticResource defaultWindowHeaderLabel}"
+                                            <Label FontSize="20"
                                                    FontStyle="Italic"
-                                                   FontSize="20"
-                                                   Foreground="{StaticResource foreSelectionBrush}">
+                                                   Foreground="{StaticResource foreSelectionBrush}"
+                                                   Style="{StaticResource defaultWindowHeaderLabel}">
                                                 <Label.Content>
                                                     <TextBlock>
                                                         <TextBlock.Text>
                                                             <MultiBinding StringFormat="{}{0} {1}">
                                                                 <Binding Source="Основное авто:"/>
-                                                                <Binding Path="Vehicle.Number" FallbackValue="-"/>
+                                                                <Binding Path="Vehicle.Number"
+                                                                         FallbackValue="-"/>
                                                             </MultiBinding>
                                                         </TextBlock.Text>
                                                     </TextBlock>
@@ -148,21 +158,23 @@
                                             <StackPanel Orientation="Horizontal">
                                                 <StackPanel.Style>
                                                     <Style TargetType="StackPanel">
-                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                        <Setter Property="Visibility"
+                                                                Value="Visible"/>
                                                         <Style.Triggers>
                                                             <DataTrigger Binding="{Binding HasVehicle}" Value="False">
-                                                                <Setter Property="Visibility" Value="Hidden"/>
+                                                                <Setter Property="Visibility"
+                                                                        Value="Hidden"/>
                                                             </DataTrigger>
                                                         </Style.Triggers>
                                                     </Style>
                                                 </StackPanel.Style>
-                                                <Button Height="20"
-                                                        Name="clipboardButton"
-                                                        Width="20"
+                                                <Button x:Name="clipboardButton"
                                                         Background="Transparent"
                                                         BorderBrush="Transparent"
                                                         Click="CopyCarNumber"
-                                                        ToolTip="Скопировать номер авто">
+                                                        Height="20"
+                                                        ToolTip="Скопировать номер авто"
+                                                        Width="20">
                                                     <Button.Content>
                                                         <Image Source="\Resources\Images\Copy.png"/>
                                                     </Button.Content>
@@ -173,10 +185,12 @@
                                                     <Label.Style>
                                                         <Style TargetType="Label"
                                                                BasedOn="{StaticResource defaultWindowHeaderLabel}">
-                                                            <Setter Property="Visibility" Value="Hidden"/>
+                                                            <Setter Property="Visibility"
+                                                                    Value="Hidden"/>
                                                             <Style.Triggers>
                                                                 <DataTrigger Binding="{Binding ElementName=clipboardButton, Path=IsEnabled}" Value="False">
-                                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                                    <Setter Property="Visibility"
+                                                                            Value="Visible"/>
                                                                 </DataTrigger>
                                                             </Style.Triggers>
                                                         </Style>
@@ -193,32 +207,32 @@
             </ListView>
         </Grid>
 
-        <Grid Grid.Row="0"
-              Background="{StaticResource addBackBrush}"
+        <Grid Background="{StaticResource addBackBrush}"
+              Grid.Row="0"
               Height="75">
-            <StackPanel Margin="10 0 10 0"
-                        HorizontalAlignment="Left">
+            <StackPanel HorizontalAlignment="Left"
+                        Margin="10 0 10 0">
                 <Label Content="Поиск по ФИО/Автомобильному номеру:"/>
 
-                <TextBox Width="400"
-                         Name="textBoxSearh"
+                <TextBox x:Name="textBoxSearh"
                          HorizontalAlignment="Left"
                          TextChanged="ListUpdateOnSearh"
-                         MaxLength="20"/>
+                         MaxLength="20"
+                         Width="400"/>
             </StackPanel>
         </Grid>
 
-        <Grid Grid.Row="2"
-              Background="{StaticResource addBackBrush}">
-            <Button Grid.Column="0"
-                    Margin="10 5"
-                    Width="150"
-                    HorizontalAlignment="Left"
+        <Grid Background="{StaticResource addBackBrush}"
+              Grid.Row="2">
+            <Button x:Name="addButton"
+                    Click="AddDriver"
                     Content="Добавить"
-                    Name="addButton"
+                    Grid.Column="0"
+                    HorizontalAlignment="Left"
+                    Margin="10 5"
                     Style="{StaticResource defaultButton}"
                     ToolTip="Добавить водителя"
-                    Click="AddDriver"/>
+                    Width="150"/>
         </Grid>
     </Grid>
 </Page>

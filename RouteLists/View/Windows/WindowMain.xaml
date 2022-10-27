@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RouteLists.View.Windows"
         mc:Ignorable="d"
+        Background="{StaticResource mainBackBrush}"
         Height="700"
-        Width="1100"
-        MinHeight="600"
-        MinWidth="1000"
         MaxHeight="{x:Static SystemParameters.PrimaryScreenHeight}"
         MaxWidth="{x:Static SystemParameters.PrimaryScreenWidth}"
-        WindowStartupLocation="CenterScreen"
-        Background="{StaticResource mainBackBrush}"
+        MinHeight="600"
+        MinWidth="1000"
         SnapsToDevicePixels="True"
-        Title="Главное окно">
+        Title="Главное окно"
+        Width="1100"
+        WindowStartupLocation="CenterScreen">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -23,18 +23,18 @@
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="1">
-            <Frame Name="mainFrame"
+            <Frame x:Name="mainFrame"
                    NavigationUIVisibility="Hidden"/>
         </Grid>
 
         <Grid Grid.Column="0">
-            <Border BorderBrush="{StaticResource accentBrush}"
-                    Background="{StaticResource accentBrush}">
+            <Border Background="{StaticResource accentBrush}"
+                    BorderBrush="{StaticResource accentBrush}">
                 <Border.Effect>
-                    <DropShadowEffect Color="{StaticResource borderColor}"
-                                      BlurRadius="5"
-                                      ShadowDepth="0"
-                                      RenderingBias="Quality"/>
+                    <DropShadowEffect BlurRadius="5"
+                                      Color="{StaticResource borderColor}"
+                                      RenderingBias="Quality"
+                                      ShadowDepth="0"/>
                 </Border.Effect>
 
                 <Grid>
@@ -43,12 +43,14 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="1" Margin="0 5 0 0">
-                        <StackPanel Orientation="Vertical"
-                                    FocusManager.IsFocusScope="True">
-                            <Button Template="{StaticResource LeftMenuButton}"
+                    <Grid Grid.Row="1"
+                          Margin="0 5 0 0">
+                        <StackPanel FocusManager.IsFocusScope="True"
+                                    Orientation="Vertical">
+                            <Button Click="OpenRouteList"
                                     Content="Маршруты"
-                                    IsTabStop="False" Click="OpenRouteList">
+                                    IsTabStop="False"
+                                    Template="{StaticResource LeftMenuButton}">
                                 <Button.Resources>
                                     <ImageSource x:Key="ButtonImage">
                                         \Resources\Images\RouteLists.png
@@ -56,11 +58,11 @@
                                 </Button.Resources>
                             </Button>
 
-                            <Button Template="{StaticResource LeftMenuButton}"
+                            <Button x:Name="OpenVehicleListButton"
+                                    Click="OpenVehicleList"
                                     Content="Автомобили"
-                                    Name="OpenVehicleListButton"
                                     IsTabStop="False"
-                                    Click="OpenVehicleList">
+                                    Template="{StaticResource LeftMenuButton}">
                                 <Button.Resources>
                                     <ImageSource x:Key="ButtonImage">
                                         \Resources\Images\Cars.png
@@ -68,10 +70,10 @@
                                 </Button.Resources>
                             </Button>
 
-                            <Button Template="{StaticResource LeftMenuButton}"
-                                    IsTabStop="False"
+                            <Button Click="OpenDriversList"
                                     Content="Водители"
-                                    Click="OpenDriversList">
+                                    IsTabStop="False"
+                                    Template="{StaticResource LeftMenuButton}">
                                 <Button.Resources>
                                     <ImageSource x:Key="ButtonImage">
                                         \Resources\Images\Employees.png
@@ -79,10 +81,10 @@
                                 </Button.Resources>
                             </Button>
 
-                            <Button Template="{StaticResource LeftMenuButton}"
-                                    IsTabStop="False"
+                            <Button Click="OpenCompaniesList"
                                     Content="Компании"
-                                    Click="OpenCompaniesList">
+                                    IsTabStop="False"
+                                    Template="{StaticResource LeftMenuButton}">
                                 <Button.Resources>
                                     <ImageSource x:Key="ButtonImage">
                                         \Resources\Images\Companies.png
@@ -90,10 +92,10 @@
                                 </Button.Resources>
                             </Button>
 
-                            <Button Template="{StaticResource LeftMenuButton}"
-                                    IsTabStop="False"
+                            <Button Click="OpenManagersList"
                                     Content="Менеджеры"
-                                    Click="OpenManagersList">
+                                    IsTabStop="False"
+                                    Template="{StaticResource LeftMenuButton}">
                                 <Button.Resources>
                                     <ImageSource x:Key="ButtonImage">
                                         \Resources\Images\Managers.png
@@ -101,30 +103,42 @@
                                 </Button.Resources>
                             </Button>
                         </StackPanel>
+
+                        <Button Background="Transparent"
+                                BorderBrush="Transparent"
+                                Click="OpenApplicationSettings"
+                                Height="50"
+                                HorizontalAlignment="Left"
+                                Margin="10"
+                                VerticalAlignment="Bottom">
+                            <Button.Content>
+                                <Image Source="\Resources\Images\Settings.png"/>
+                            </Button.Content>
+                        </Button>
                     </Grid>
 
                     <Grid Grid.Row="0">
                         <Border Background="{StaticResource iBeamBrush}"
                                 CornerRadius="0 0 20 0">
                             <Border.Effect>
-                                <DropShadowEffect Color="{StaticResource borderColor}"
-                                                  ShadowDepth="2"
-                                                  BlurRadius="5"
-                                                  Direction="195"/>
+                                <DropShadowEffect BlurRadius="5"
+                                                  Color="{StaticResource borderColor}"
+                                                  Direction="195"
+                                                  ShadowDepth="2"/>
                             </Border.Effect>
 
                             <Grid>
                                 <Grid Grid.Column="0">
-                                    <Image Margin="5"
-                                           HorizontalAlignment="Center"
-                                           Width="auto"
-                                           Source="{StaticResource appWideLogo}"/>
+                                    <Image HorizontalAlignment="Center"
+                                           Margin="5"
+                                           Source="{StaticResource appWideLogo}"
+                                           Width="auto"/>
 
-                                    <Label Name="labelAppVersion"
-                                           VerticalAlignment="Bottom"
-                                           HorizontalAlignment="Left"
+                                    <Label x:Name="labelAppVersion"
                                            FontSize="14"
-                                           Foreground="#FFDADAE4"/>
+                                           Foreground="#FFDADAE4"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Bottom"/>
                                 </Grid>
                             </Grid>
                         </Border>

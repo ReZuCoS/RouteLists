@@ -10,11 +10,11 @@ none
 false
 TRACE
 C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\App.xaml
-13-809328809
+29-691238449
 
-19427264846
-20-542163961
-Resources\Dictionaries\Brushes.xaml;Resources\Dictionaries\Colors.xaml;Resources\Dictionaries\Fonts.xaml;Resources\Dictionaries\Images.xaml;Resources\Dictionaries\Styles\ButtonStyles.xaml;Resources\Dictionaries\Styles\DatePickerStyles.xaml;Resources\Dictionaries\Styles\ImageStyles.xaml;Resources\Dictionaries\Styles\LabelStyles.xaml;Resources\Dictionaries\Styles\TextBoxStyles.xaml;Resources\Dictionaries\Templates\ButtonTemplates.xaml;View\Pages\PageVehicles.xaml;View\Pages\PageRouteLists.xaml;View\Windows\WindowMain.xaml;
+391447680798
+25999917226
+Resources\Dictionaries\Brushes.xaml;Resources\Dictionaries\Colors.xaml;Resources\Dictionaries\Converters.xaml;Resources\Dictionaries\Fonts.xaml;Resources\Dictionaries\Images.xaml;Resources\Dictionaries\Styles\ButtonStyles.xaml;Resources\Dictionaries\Styles\DatePickerStyles.xaml;Resources\Dictionaries\Styles\DateTimePickerStyles.xaml;Resources\Dictionaries\Styles\ImageStyles.xaml;Resources\Dictionaries\Styles\LabelStyles.xaml;Resources\Dictionaries\Styles\TextBoxStyles.xaml;Resources\Dictionaries\Templates\ButtonTemplates.xaml;Resources\Dictionaries\Styles\ComboBoxItemContainerStyles.xaml;Resources\Dictionaries\Styles\ComboBoxStyles.xaml;Resources\Dictionaries\Templates\CheckBoxTemplates.xaml;View\Pages\EntityEditors\PageEditCompany.xaml;View\Pages\EntityEditors\PageEditDriver.xaml;View\Pages\EntityEditors\PageEditManager.xaml;View\Pages\EntityEditors\PageEditRouteList.xaml;View\Pages\EntityEditors\PageEditRoutePoint.xaml;View\Pages\EntityEditors\PageEditVehicle.xaml;View\Pages\ListPages\PageCompanies.xaml;View\Pages\ListPages\PageDrivers.xaml;View\Pages\ListPages\PageManagers.xaml;View\Pages\ListPages\PageVehicles.xaml;View\Pages\ListPages\PageRouteLists.xaml;View\Pages\ReportPages\DriverReportPage.xaml;View\Windows\WindowEntityEditor.xaml;View\Windows\WindowMain.xaml;
 
 False
 

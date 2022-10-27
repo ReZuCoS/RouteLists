@@ -60,3 +60,13 @@ C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Debug\View\Pages\En
 C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Debug\View\Pages\EntityEditors\PageEditRouteList.baml
 C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Debug\View\Pages\EntityEditors\PageEditRoutePoint.g.cs
 C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Debug\View\Pages\EntityEditors\PageEditRoutePoint.baml
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Debug\View\Pages\ReportPages\DriverReportPage.g.cs
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Debug\View\Pages\ReportPages\DriverReportPage.baml
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\bin\Debug\Spire.Pdf.dll
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\bin\Debug\Spire.XLS.dll
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\bin\Debug\Microsoft.mshtml.dll
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\bin\Debug\Spire.Pdf.xml
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\bin\Debug\Spire.XLS.xml
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Debug\RouteLists.csproj.ResolveComReference.cache
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Debug\View\Windows\WindowSettings.g.cs
+C:\Users\ReZuCoS\Programming files\RouteLists\RouteLists\obj\Debug\View\Windows\WindowSettings.baml

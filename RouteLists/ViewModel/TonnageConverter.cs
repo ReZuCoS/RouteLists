@@ -10,7 +10,7 @@ namespace RouteLists.ViewModel
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            _ = int.TryParse(value.ToString(), out int tonnage);
+            int.TryParse(value.ToString(), out int tonnage);
 
             return tonnage >= TonnageToPass;
         }

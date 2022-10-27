@@ -1,4 +1,6 @@
 ﻿using RouteLists.View.Pages.ListPages;
+using RouteLists.ViewModel;
+using System;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Navigation;
@@ -7,14 +9,25 @@ namespace RouteLists.View.Windows
 {
     public partial class WindowMain : Window
     {
-        private readonly PageVehicles _pageVehicles = new PageVehicles();
-        private readonly PageDrivers _pageDrivers = new PageDrivers();
         private readonly PageCompanies _pageCompanies = new PageCompanies();
+        private readonly PageDrivers _pageDrivers = new PageDrivers();
         private readonly PageManagers _pageManagers = new PageManagers();
         private readonly PageRouteLists _pageRouteLists = new PageRouteLists();
+        private readonly PageVehicles _pageVehicles = new PageVehicles();
 
         public WindowMain()
         {
+            if (AppSettings.UserCompanyName == string.Empty)
+            {
+                bool isAppConfigured = new WindowSettings().ShowDialog().Value;
+
+                if (!isAppConfigured)
+                {
+                    Environment.Exit(0);
+                    return;
+                }
+            }
+
             InitializeComponent();
 
             this.MaxWidth += 16;
@@ -50,6 +63,11 @@ namespace RouteLists.View.Windows
         {
             _pageRouteLists.UpdateList();
             mainFrame.Navigate(_pageRouteLists);
+        }
+
+        private void OpenApplicationSettings(object sender, RoutedEventArgs e)
+        {
+            new WindowSettings().ShowDialog();
         }
 
         private void OnNavigatedClearFrameHistory(object sender, NavigationEventArgs e)

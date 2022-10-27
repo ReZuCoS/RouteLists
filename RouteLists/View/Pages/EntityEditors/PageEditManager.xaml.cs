@@ -1,6 +1,5 @@
 ﻿using RouteLists.Model;
 using RouteLists.ViewModel;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 
@@ -14,13 +13,10 @@ namespace RouteLists.View.Pages.EntityEditors
         {
             InitializeComponent();
             cBoxCompany.ItemsSource = DatabaseContext.Database.Companies.ToList();
-            this.Title = "Добавление менеджера";
         }
 
-        public PageEditManager(Manager manager)
+        public PageEditManager(Manager manager) : this()
         {
-            InitializeComponent();
-            cBoxCompany.ItemsSource = DatabaseContext.Database.Companies.ToList();
             this.Title = "Изменение данных менеджера";
             _manager = manager;
 
@@ -33,15 +29,14 @@ namespace RouteLists.View.Pages.EntityEditors
 
         public override bool EntityRemoved()
         {
-            MessageBoxResult result = MessageBox.Show($"Данное действие удалит все маршрутные точки в которых встречается этот менеджер.\n\n" +
-                $"Вы действительно хотите удалить менеджера: {_manager.Name} из компании {_manager.Company.Title}?\n\nДанное действие невозможно отменить!",
+            MessageBoxResult result = MessageBox.Show($"Данное действие удалит все маршрутные точки в которых" +
+                $"встречается этот менеджер.\n\n" +
+                $"Вы действительно хотите удалить менеджера: {_manager.Name} из компании " +
+                $"{_manager.Company.Title}?\n\nДанное действие невозможно отменить!",
                 "Удаление менджера", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             if (result == MessageBoxResult.Yes)
             {
-                List<RoutePoint> routePoints = DatabaseContext.Database.RoutePoints.ToList().Where(rp => rp.Manager == _manager).ToList();
-                DatabaseContext.Database.RoutePoints.RemoveRange(routePoints);
-
                 DatabaseContext.Database.Managers.Remove(_manager);
                 DatabaseContext.SaveDatabase();
                 return true;
@@ -82,7 +77,8 @@ namespace RouteLists.View.Pages.EntityEditors
         {
             if (txtBoxName.Text.Replace(" ", "") == "")
             {
-                MessageBox.Show("Введите имя менеджера!");
+                MessageBox.Show("Введите имя менеджера!",
+                    "Ошибка ввода данных", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
@@ -90,19 +86,22 @@ namespace RouteLists.View.Pages.EntityEditors
                 (txtBoxSurname.Text != "" && !StringValidator.IsLettersOnly(txtBoxSurname.Text)) ||
                 (txtBoxPatronymic.Text != "" && !StringValidator.IsLettersOnly(txtBoxPatronymic.Text)))
             {
-                MessageBox.Show("Фамилия, имя, отчество должны содержать только буквы!");
+                MessageBox.Show("Фамилия, имя, отчество должны содержать только буквы!",
+                    "Ошибка ввода данных", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
             if (!StringValidator.IsCorrectPhoneNumber(txtBoxPhone.Text))
             {
-                MessageBox.Show("Телефонный номер должен иметь формат +7 *** *** ** **!");
+                MessageBox.Show("Телефонный номер должен иметь формат +7 *** *** ** **!",
+                    "Ошибка ввода данных", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
             if (cBoxCompany.SelectedItem == null)
             {
-                MessageBox.Show("Выберите компанию менеджера!");
+                MessageBox.Show("Выберите компанию менеджера!",
+                    "Ошибка ввода данных", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 

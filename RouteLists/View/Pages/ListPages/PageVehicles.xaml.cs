@@ -18,8 +18,7 @@ namespace RouteLists.View.Pages.ListPages
         public PageVehicles()
         {
             InitializeComponent();
-            _ = DatabaseContext.Database.PassTypes.ToList();
-            UpdateList();
+            DatabaseContext.Database.PassTypes.ToList();
         }
 
         public void UpdateList()
@@ -34,15 +33,18 @@ namespace RouteLists.View.Pages.ListPages
             switch (comboBoxPassFilter.SelectedIndex)
             {
                 case 1:
-                    _vehicles = _vehicles.Where(v => v.VehiclePass != null && v.VehiclePass.ExpireType == VehiclePass.PassExpireType.Valid).ToList();
+                    _vehicles = _vehicles.Where(v => v.VehiclePass != null &&
+                    v.VehiclePass.ExpireType == VehiclePass.PassExpireType.Valid).ToList();
                     break;
 
                 case 2:
-                    _vehicles = _vehicles.Where(v => v.VehiclePass != null && v.VehiclePass.ExpireType == VehiclePass.PassExpireType.StartsExpire).ToList();
+                    _vehicles = _vehicles.Where(v => v.VehiclePass != null &&
+                    v.VehiclePass.ExpireType == VehiclePass.PassExpireType.StartsExpire).ToList();
                     break;
 
                 case 3:
-                    _vehicles = _vehicles.Where(v => v.VehiclePass == null || v.VehiclePass.ExpireType == VehiclePass.PassExpireType.Expired).ToList();
+                    _vehicles = _vehicles.Where(v => v.VehiclePass == null ||
+                    v.VehiclePass.ExpireType == VehiclePass.PassExpireType.Expired).ToList();
                     break;
 
                 default:
@@ -61,9 +63,7 @@ namespace RouteLists.View.Pages.ListPages
             bool isListUpdated = (bool)windowEditor.ShowDialog();
 
             if (isListUpdated)
-            {
                 UpdateList();
-            }
         }
 
         private void AddVehicle(object sender, RoutedEventArgs e)
@@ -73,9 +73,7 @@ namespace RouteLists.View.Pages.ListPages
             bool isListUpdated = (bool)windowEditor.ShowDialog();
 
             if (isListUpdated)
-            {
                 UpdateList();
-            }
         }
 
         private void ListUpdateOnSearh(object sender, TextChangedEventArgs e)

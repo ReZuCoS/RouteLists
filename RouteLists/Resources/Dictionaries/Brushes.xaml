@@ -2,17 +2,17 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!-- App brushes -->
-    <SolidColorBrush x:Key="foreBrush" Color="{StaticResource foreColor}"/>
-    <SolidColorBrush x:Key="borderBrush" Color="{StaticResource borderColor}"/>
     <SolidColorBrush x:Key="accentBrush" Color="{StaticResource accentColor}"/>
-    <SolidColorBrush x:Key="iBeamBrush" Color="{StaticResource iBeamColor}"/>
     <SolidColorBrush x:Key="addBackBrush" Color="{StaticResource addBackColor}"/>
+    <SolidColorBrush x:Key="borderBrush" Color="{StaticResource borderColor}"/>
+    <SolidColorBrush x:Key="foreBrush" Color="{StaticResource foreColor}"/>
+    <SolidColorBrush x:Key="foreSelectionBrush" Color="{StaticResource foreSelectionColor}"/>
+    <SolidColorBrush x:Key="iBeamBrush" Color="{StaticResource iBeamColor}"/>
     <SolidColorBrush x:Key="mainBackBrush" Color="{StaticResource mainBackColor}"/>
+    <SolidColorBrush x:Key="passActiveBrush" Color="{StaticResource passActive}"/>
+    <SolidColorBrush x:Key="passExpiredBrush" Color="{StaticResource passExpired}"/>
+    <SolidColorBrush x:Key="passStartsExpiresBrush" Color="{StaticResource passStartsExpires}"/>
     <SolidColorBrush x:Key="unactiveBrush" Color="{StaticResource unactiveColor}"/>
     <SolidColorBrush x:Key="unactiveTransparentBrush" Color="{StaticResource unactiveColor}" Opacity="0.25"/>
-    <SolidColorBrush x:Key="foreSelectionBrush" Color="{StaticResource foreSelectionColor}"/>
-    <SolidColorBrush x:Key="passActiveBrush" Color="{StaticResource passActive}"/>
-    <SolidColorBrush x:Key="passStartsExpiresBrush" Color="{StaticResource passStartsExpires}"/>
-    <SolidColorBrush x:Key="passExpiredBrush" Color="{StaticResource passExpired}"/>
 
 </ResourceDictionary>

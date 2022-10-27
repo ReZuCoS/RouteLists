@@ -17,18 +17,12 @@ namespace RouteLists.View.Pages.EntityEditors
         public PageEditRouteList()
         {
             InitializeComponent();
-
             cBoxDriver.ItemsSource = DatabaseContext.Database.Drivers.ToList();
             cBoxVehicle.ItemsSource = DatabaseContext.Database.Vehicles.ToList();
-            this.Title = "Добавление маршрутного листа";
         }
 
-        public PageEditRouteList(RouteList routeList)
+        public PageEditRouteList(RouteList routeList) : this()
         {
-            InitializeComponent();
-
-            cBoxDriver.ItemsSource = DatabaseContext.Database.Drivers.ToList();
-            cBoxVehicle.ItemsSource = DatabaseContext.Database.Vehicles.ToList();
             this.Title = $"Изменение маршрутного листа";
             _routeList = routeList;
 
@@ -48,9 +42,6 @@ namespace RouteLists.View.Pages.EntityEditors
 
             if (result == MessageBoxResult.Yes)
             {
-                List<RoutePoint> routePoints = DatabaseContext.Database.RoutePoints.ToList().Where(rp => rp.RouteList == _routeList).ToList();
-                DatabaseContext.Database.RoutePoints.RemoveRange(routePoints);
-
                 DatabaseContext.Database.RouteLists.Remove(_routeList);
                 DatabaseContext.SaveDatabase();
                 return true;
@@ -64,14 +55,10 @@ namespace RouteLists.View.Pages.EntityEditors
             Driver selectedDriver = (Driver)cBoxDriver.SelectedItem;
             
             if(selectedDriver == null)
-            {
                 return;
-            }
 
             if (selectedDriver.Vehicle != null)
-            {
                 cBoxVehicle.SelectedItem = selectedDriver.Vehicle;
-            }
         }
 
         public override bool EntitySaved()
@@ -99,13 +86,15 @@ namespace RouteLists.View.Pages.EntityEditors
                 cBoxVehicle.SelectedItem == null ||
                 datePickerListDate.SelectedDate == null)
             {
-                MessageBox.Show("Выберите водителя, автомобиль и дату маршрутного листа!");
+                MessageBox.Show("Выберите водителя, автомобиль и дату маршрутного листа!",
+                    "Ошибка ввода данных", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
             if (dataGridRoutePoints.Items.Count == 0)
             {
-                MessageBox.Show("Маршрутный лист должен содержать одну или более маршрутных точек!");
+                MessageBox.Show("Маршрутный лист должен содержать одну или более маршрутных точек!",
+                    "Ошибка ввода данных", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
@@ -129,9 +118,7 @@ namespace RouteLists.View.Pages.EntityEditors
             bool isListUpdated = (bool)windowEditor.ShowDialog();
 
             if (isListUpdated)
-            {
                 UpdateList();
-            }
         }
 
         private void AddRoutePoint(object sender, RoutedEventArgs e)
@@ -143,9 +130,7 @@ namespace RouteLists.View.Pages.EntityEditors
             bool isListUpdated = (bool)windowEditor.ShowDialog();
 
             if (isListUpdated)
-            {
                 UpdateList();
-            }
         }
 
         private void UpdateList()
