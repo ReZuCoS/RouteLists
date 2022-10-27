@@ -45,7 +45,7 @@ namespace RouteLists.ViewModel
             }
 
             sheet.Range["A1"].Text = $"Маршрутный лист {routeList.ListNumber}";
-            sheet.Range["A2"].Text = "Работника ООО \"СнабСтрой\"";
+            sheet.Range["A2"].Text = $"Работника {AppSettings.UserCompanyName}";
             sheet.Range["A3"].Text = $"На {routeList.Date:dd MMMM yyyy} г.";
             sheet.Range["A4"].Text = $"Работник: {routeList.Driver.FIO}";
             sheet.Range["A5"].Text = $"Должность: Водитель";
