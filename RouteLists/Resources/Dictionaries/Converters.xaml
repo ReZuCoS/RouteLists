@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:vm="clr-namespace:RouteLists.ViewModel">
+
+    <vm:CostConverter x:Key="CostConverter"/>
+    <vm:OnlyDigitsConverter x:Key="OnlyDigitsConverter"/>
+    <vm:OnlyLettersConverter x:Key="OnlyLettersConverter"/>
+    <vm:PhoneNumberConverter x:Key="PhoneNumberConverter"/>
+    <vm:TonnageConverter x:Key="TonnageConverter" TonnageToPass="1000"/>
+    <vm:VehicleNumberConverter x:Key="VehicleNumberConverter"/>
+
+</ResourceDictionary>
